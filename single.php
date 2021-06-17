@@ -1,6 +1,7 @@
 <?php
 require 'Db.php';
 require 'Post.php';
+require 'Comment.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -14,7 +15,7 @@ require 'Post.php';
         <p>C'est ma page Article</p>
         <?php
         $post = new Post();
-        $posts = $post->showPost(3);
+        $posts = $post->showPost($_GET['id']);
         while($post = $posts->fetch())
         {
         ?>
@@ -31,6 +32,22 @@ require 'Post.php';
         $posts->closeCursor();
         ?>
         <a href="home.php">Revenir sur la Page Principale</a>
+        <div id="comments">
+        <h3>Commentaires</h3>
+        <?php 
+        $comment = new Comment();
+        $comments = $comment->findCommentsByPost($_GET['id']);
+        while($comment = $comments->fetch())
+        {
+        ?>
+        <h4><?= htmlspecialchars($comment->user_id);?></h4>
+                <p><?= htmlspecialchars($comment->content);?></p>
+                <p>Posté le <?= htmlspecialchars($comment->created_at);?></p>
+                <?php
+        }
+        $comments->closeCursor();
+        ?>
+        </div>
     </div>
     </body>
 </html>

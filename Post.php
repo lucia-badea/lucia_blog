@@ -9,11 +9,11 @@ class Post extends Db
         return $this->manageRequest($sql);
     }
 
-    public function showPost($id)
+    public function showPost($post_id)
     {
         $sql = 'SELECT id, titlePost, headerPost, contentPost,
         updated_at, user_id FROM posts WHERE id=?';
-        return $this->manageRequest($sql, [$id]);
+        return $this->manageRequest($sql, [$post_id]);
 
     }
 }
