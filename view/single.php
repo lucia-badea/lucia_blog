@@ -1,7 +1,9 @@
 <?php
-require 'Db.php';
-require 'Post.php';
-require 'Comment.php';
+
+require '../vendor/autoload.php';
+
+use App\src\manager\PostManager;
+use App\src\manager\CommentManager;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -14,7 +16,7 @@ require 'Comment.php';
         <h1>Le Blog de Lucia</h1>
         <p>C'est ma page Article</p>
         <?php
-        $post = new Post();
+        $post = new PostManager();
         $posts = $post->showPost($_GET['id']);
         while($post = $posts->fetch())
         {
@@ -35,7 +37,7 @@ require 'Comment.php';
         <div id="comments">
         <h3>Commentaires</h3>
         <?php 
-        $comment = new Comment();
+        $comment = new CommentManager();
         $comments = $comment->findCommentsByPost($_GET['id']);
         while($comment = $comments->fetch())
         {

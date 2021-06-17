@@ -1,6 +1,8 @@
 <?php
 
-class Post extends Db
+namespace App\src\manager;
+
+class PostManager extends Db
 {
     public function getPosts()
     {

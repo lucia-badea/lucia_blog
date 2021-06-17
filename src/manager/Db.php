@@ -1,5 +1,10 @@
 <?php
 
+namespace App\src\manager;
+
+use PDO;
+use Exception;
+
 abstract class Db // "abstract" - cette classe ne pourra plus être instanciée
 {
     // Mettre en constante les informations de connexion à la BDD

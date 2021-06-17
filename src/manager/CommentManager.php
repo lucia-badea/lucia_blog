@@ -1,6 +1,8 @@
 <?php
 
-class Comment extends Db
+namespace App\src\manager;
+
+class CommentManager extends Db
 {
     public function findCommentsByPost($post_id)
     {

@@ -1,6 +1,8 @@
 <?php
-require 'Db.php';
-require 'Post.php';
+
+require '../vendor/autoload.php';
+
+use App\src\manager\PostManager;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,7 +15,7 @@ require 'Post.php';
         <h1>Le Blog de Lucia</h1>
         <p>C'est ma page principale</p>
         <?php
-        $post = new Post();
+        $post = new PostManager();
         $posts = $post->getPosts();
         while($post = $posts->fetch())
         {
