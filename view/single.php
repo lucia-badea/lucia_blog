@@ -1,7 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
-
 use App\src\manager\PostManager;
 use App\src\manager\CommentManager;
 ?>
@@ -16,8 +14,6 @@ use App\src\manager\CommentManager;
         <h1>Le Blog de Lucia</h1>
         <p>C'est ma page Article</p>
         <?php
-        $post = new PostManager();
-        $posts = $post->showPost($_GET['id']);
         while($post = $posts->fetch())
         {
         ?>
@@ -33,12 +29,10 @@ use App\src\manager\CommentManager;
         }
         $posts->closeCursor();
         ?>
-        <a href="home.php">Revenir sur la Page Principale</a>
+        <a href="../public/index.php">Revenir sur la Page Principale</a>
         <div id="comments">
         <h3>Commentaires</h3>
         <?php 
-        $comment = new CommentManager();
-        $comments = $comment->findCommentsByPost($_GET['id']);
         while($comment = $comments->fetch())
         {
         ?>

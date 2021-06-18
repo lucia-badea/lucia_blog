@@ -1,7 +1,5 @@
 <?php
 
-require '../vendor/autoload.php';
-
 use App\src\manager\PostManager;
 ?>
 <!DOCTYPE html>
@@ -15,8 +13,6 @@ use App\src\manager\PostManager;
         <h1>Le Blog de Lucia</h1>
         <p>C'est ma page principale</p>
         <?php
-        $post = new PostManager();
-        $posts = $post->getPosts();
         while($post = $posts->fetch())
         {
         ?>
@@ -25,7 +21,7 @@ use App\src\manager\PostManager;
             <p><?= htmlspecialchars($post->headerPost);?></p>
             <p><?= htmlspecialchars($post->contentPost);?></p>
             <p>Créé le : <?= htmlspecialchars($post->updated_at);?></p>
-            <a href="single.php?id=<?= htmlspecialchars($post->id); ?>">Lire la suite</a>
+            <a href="../public/index.php?route=post&id=<?= htmlspecialchars($post->id); ?>">Lire la suite</a>
         </div>
         <br>
         <?php
