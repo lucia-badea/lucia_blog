@@ -2,18 +2,18 @@
 
 namespace App\src\controller;
 
-use App\src\manager\PostManager;
-use App\src\manager\CommentManager;
+use App\src\model\PostModel;
+use App\src\model\CommentModel;
 
 class FrontController 
 {
-    private $postManager;
-    private $commentManager;
+    private $postModel;
+    private $commentModel;
 
     public function __construct()
     {
-        $this->post = new PostManager();
-        $this->comment = new CommentManager();
+        $this->post = new PostModel();
+        $this->comment = new CommentModel();
     }
     public function home() // cette méthode gére l'affichage de la page d'accueil
     {

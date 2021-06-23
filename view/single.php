@@ -1,7 +1,7 @@
 <?php
 
-use App\src\manager\PostManager;
-use App\src\manager\CommentManager;
+use App\src\model\PostModel;
+use App\src\model\CommentModel;
 ?>
 <!DOCTYPE html>
 <html lang="fr">

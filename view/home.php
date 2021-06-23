@@ -1,6 +1,6 @@
 <?php
 
-use App\src\manager\PostManager;
+use App\src\model\PostModel;
 ?>
 <!DOCTYPE html>
 <html lang="fr">

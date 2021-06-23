@@ -3,14 +3,17 @@
 namespace App\config;
 use Exception;
 use App\src\controller\FrontController;
+use App\src\controller\ErrorController;
 
 class Router 
 {
     private $frontController;
+    private $errorController;
 
     public function __construct()
     {
         $this->frontController = new FrontController();
+        $this->errorController = new ErrorController();
     }
     public function run()
     {
@@ -22,7 +25,7 @@ class Router
                     $frontController->post($_GET['id']);
             }
             else {
-                echo 'Page inconnue';
+                $this->errorController->notFoundError();
             }
         }
         else {
@@ -33,7 +36,7 @@ class Router
         //si un autre parametre va être specifié, on va afficher une erreur
         catch(Exception $e)
         {
-            echo 'Erreur';
+           $this->errorController->serverError();
         }
     }
 }
