@@ -2,21 +2,19 @@
 
 namespace App\src\controller;
 
-use App\src\model\PostModel;
-
-class BackController 
+class BackController extends Controller
 {
-    public function __construct()
-    {
-        $this->postModel = new PostModel();
-    }
     public function addPost($post)
-    {
+    { //si le formulaire a été envoyé on fait appel à la méthode addPost
         if(isset($post['submit'])) {
-            $post = $this->postModel->addPost($post);
+            $this->postModel->addPost($post);
             header('Location: ../public/index.php');
         }
-        require '../view/add_Post.php';
+        //require '../view/add_Post.php';
+        //si le formulaire n'a pas été envoyé on fait rien
+        return $this->view->render('add_Post', [
+            'post' => $post
+        ]);
     }
     
 }

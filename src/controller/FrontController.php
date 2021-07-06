@@ -2,31 +2,26 @@
 
 namespace App\src\controller;
 
-use App\src\model\PostModel;
-use App\src\model\CommentModel;
-
-class FrontController 
+class FrontController extends Controller
 {
-    private $postModel;
-    private $commentModel;
-
-    public function __construct()
-    {
-        $this->post = new PostModel();
-        $this->comment = new CommentModel();
-    }
     public function home() // cette méthode gére l'affichage de la page d'accueil
     {
-        $posts = $this->post->getPosts();
-        require '../view/home.php';
+        $posts = $this->postModel->getPosts();
+        //require '../view/home.php'; 
+        return $this->view->render('home', [
+            'posts' => $posts
+        ]);
     }
 
     public function post($post_id)
     {
-        $post = $this->post->showPost($post_id);
-        $comments = $this->comment->findCommentsByPost($_GET['post_id']);
-       
-        require '../view/single.php';
+        $post = $this->postModel->showPost($post_id);
+        $comments = $this->commentModel->findCommentsByPost($_GET['post_id']);      
+        //require '../view/single.php';
+        return $this->view->render('single', [
+            'post' => $post,
+            'comments' => $comments
+        ]);
     }
 
    /* public function insert()

@@ -44,12 +44,12 @@ class PostModel extends Db
 
     }
 
-   /* public function addPost($post)//ajouter un article
+    public function addPost($post)//ajouter un article
     {
         // Récupérer les variables $titlePost, $headerPost et $contentPost
         extract($post);
-        $sql = 'INSERT INTO posts (posts.titlePost, posts.headerPost, posts.contentPost
-        posts.updated_at) VALUES (?,?,?, NOW())';
+        //faire une requete INSERT
+        $sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at) VALUES (?,?,?, NOW())';
         $this->manageRequest($sql, [$titlePost, $headerPost, $contentPost]);
-    }*/
+    }
 }

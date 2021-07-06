@@ -9,9 +9,9 @@ use Exception;
 
 class Router 
 {
+    private $backController;
     private $frontController;
     private $errorController;
-    private $backController;
 
     public function __construct()
     {

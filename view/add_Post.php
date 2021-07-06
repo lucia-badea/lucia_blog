@@ -1,17 +1,6 @@
 <?php
-
-use App\src\model\PostModel;
+$this->title = "Ajouter un article";
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Mon blog</title>
-    </head>
-    <body>
-    <div>
-        <h1>Le Blog de Lucia</h1>
-        <p>Ajouter un article</p>
 <div>
     <form method="post" action="../public/index.php?route=addPost">
         <label for="titlePost">Titre</label><br>

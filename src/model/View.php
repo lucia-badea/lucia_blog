@@ -2,15 +2,15 @@
 
 namespace App\src\model;
 
-class View
+class View // Classe qui gére les vues
 {
     private $file;
     private $title;
     public function render($template, $data = [])
     {
-        $this->file = '../templates/'.$template.'.php';
+        $this->file = '../view/'.$template.'.php';
         $content  = $this->renderFile($this->file, $data);
-        $view = $this->renderFile('../templates/base.php', [
+        $view = $this->renderFile('../view/base_view.php', [
             'title' => $this->title,
             'content' => $content
         ]);
@@ -24,6 +24,6 @@ class View
             require $file;
             return ob_get_clean();
         }
-        //header('Location: index.php?route=notFound');
+        header('Location: index.php?route=notFound');
     }
 }
