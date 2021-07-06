@@ -1,17 +1,21 @@
 <?php
 
 namespace App\config;
-use Exception;
+
+use App\src\controller\BackController;
 use App\src\controller\FrontController;
 use App\src\controller\ErrorController;
+use Exception;
 
 class Router 
 {
     private $frontController;
     private $errorController;
+    private $backController;
 
     public function __construct()
     {
+        $this->backController = new BackController();
         $this->frontController = new FrontController();
         $this->errorController = new ErrorController();
     }
@@ -21,9 +25,16 @@ class Router
             //si index.php a un parametre post, on va afficher la page single
             if(isset($_GET['route'])) {
                 if($_GET['route'] === 'post'){
-                    $frontController = new FrontController();
-                    $frontController->post($_GET['id']);
+                    $this->frontController->post($_GET['post_id']);
             }
+            elseif($_GET['route'] === 'addPost'){
+                $this->backController->addPost($_POST);
+            }
+
+           /* elseif($_GET['route'] === 'addComment'){
+                $frontController = new FrontController();
+                $frontController->addComment($_GET['post_id']);
+        }*/
             else {
                 $this->errorController->notFoundError();
             }

@@ -12,21 +12,23 @@ use App\src\model\PostModel;
     <div>
         <h1>Le Blog de Lucia</h1>
         <p>C'est ma page principale</p>
+        <a href="../public/index.php?route=addPost">Nouvel article</a>
         <?php
-        while($post = $posts->fetch())
+        //while($post = $posts->fetch())
+        foreach ($posts as $post)
         {
         ?>
         <div>
-            <h2><?= htmlspecialchars($post->titlePost);?></h2>
-            <p><?= htmlspecialchars($post->headerPost);?></p>
-            <p><?= htmlspecialchars($post->contentPost);?></p>
-            <p>Créé le : <?= htmlspecialchars($post->updated_at);?></p>
-            <a href="../public/index.php?route=post&id=<?= htmlspecialchars($post->id); ?>">Lire la suite</a>
+            <h2><?= htmlspecialchars($post->getTitlePost());?></h2>
+            <p><?= htmlspecialchars($post->getHeaderPost());?></p>
+            <p><?= htmlspecialchars($post->getContentPost());?></p>
+            <p>Créé le : <?= htmlspecialchars($post->getUpdated_at());?></p>
+            <a href="../public/index.php?route=post&post_id=<?= htmlspecialchars($post->getId()); ?>">Lire la suite</a>
         </div>
         <br>
         <?php
         }
-        $posts->closeCursor();
+        //$posts->closeCursor();
         ?>
     </div>
     </body>

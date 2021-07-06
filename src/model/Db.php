@@ -47,12 +47,12 @@ abstract class Db // "abstract" - cette classe ne pourra plus être instanciée
         {
             $resultat=$this->tryConnection()->prepare($sql);
             //la methode setFetchMode de PDO avec 1er param PDO::FETCH_CLASS et 2eme param le nom de la classe
-            $resultat->setFetchMode(PDO::FETCH_CLASS, static::class); //"static::class c'est la fonction de PHP get_called_class
+           // $resultat->setFetchMode(PDO::FETCH_CLASS, static::class); //"static::class c'est la fonction de PHP get_called_class
             $resultat->execute($params);
             return $resultat;
         }
         $resultat=$this->tryConnection()->query($sql);
-        $resultat->setFetchMode(PDO::FETCH_CLASS, static::class);
+        //$resultat->setFetchMode(PDO::FETCH_CLASS, static::class);
         return $resultat;
     }
 }
