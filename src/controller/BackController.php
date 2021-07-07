@@ -16,5 +16,25 @@ class BackController extends Controller
             'post' => $post
         ]);
     }
+
+    public function updatePost($post, $post_id)
+    {
+        $post = $this->postModel->showPost($post_id);
+        if(isset($post->submit)) {
+            $this->postModel->updatePost($post, $post_id);
+            header('Location: ../public/index.php');
+        }
+
+        return $this->view->render('update_Post', [
+            'post' => $post
+        ]);
+    }
+
+    
+    public function deletePost($post_id)
+    {
+        $this->postModel->deletePost($post_id);
+        header('Location: ../public/index.php');
+    }
     
 }

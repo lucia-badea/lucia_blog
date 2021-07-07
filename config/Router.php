@@ -30,11 +30,15 @@ class Router
             elseif($_GET['route'] === 'addPost'){
                 $this->backController->addPost($_POST);
             }
-
-           /* elseif($_GET['route'] === 'addComment'){
-                $frontController = new FrontController();
-                $frontController->addComment($_GET['post_id']);
-        }*/
+            elseif($_GET['route'] === 'updatePost'){
+                $this->backController->updatePost($_POST, $_GET['post_id']);
+            }
+            elseif($_GET['route'] === 'deletePost') {
+                $this->backController->deletePost($_GET['post_id']);
+            }
+            elseif($_GET['route'] === 'addComment'){
+                $this->frontController->addComment($_POST, $_GET['post_id']);
+        }
             else {
                 $this->errorController->notFoundError();
             }

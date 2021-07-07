@@ -23,6 +23,14 @@ class FrontController extends Controller
             'comments' => $comments
         ]);
     }
+    
+    public function addComment($post, $post_id)
+    {
+        if(isset($post['submit'])) {
+            $this->commentModel->addComment($post, $post_id);
+            header('Location: ../public/index.php?route=post&post_id='.$post_id);
+        }
+    }
 
    /* public function insert()
     {

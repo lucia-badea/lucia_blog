@@ -52,4 +52,25 @@ class PostModel extends Db
         $sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at) VALUES (?,?,?, NOW())';
         $this->manageRequest($sql, [$titlePost, $headerPost, $contentPost]);
     }
+
+    //Modifier un article
+    public function updatePost($post, $post_id)
+    {
+        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost, updated_at=:NOW()
+        WHERE id=:post_id';
+        $this->manageRequest($sql, [
+            $titlePost => $post->get('titlePost'),
+            $headerPost => $post->get('headerPost'),
+            $contentPost => $post->get('contentPost'),
+            'post_id' => $post_id
+        ]);
+    }
+
+    public function deletePost($post_id)
+    {
+        $sql = 'DELETE FROM comments WHERE post_id = ?';
+        $this->manageRequest($sql, [$post_id]);
+        $sql = 'DELETE FROM posts WHERE id = ?';
+        $this->manageRequest($sql, [$post_id]);
+    }
 }
