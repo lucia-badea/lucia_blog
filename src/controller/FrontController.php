@@ -27,7 +27,8 @@ class FrontController extends Controller
     public function addComment($post, $post_id)
     {
         if(isset($post['submit'])) {
-            $this->commentModel->addComment($post, $post_id);
+            $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
+            $this->commentModel->addComment($post, $post_id, $user_id);
             header('Location: ../public/index.php?route=post&post_id='.$post_id);
         }
     }

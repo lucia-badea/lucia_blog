@@ -7,7 +7,8 @@ class BackController extends Controller
     public function addPost($post)
     { //si le formulaire a été envoyé on fait appel à la méthode addPost
         if(isset($post['submit'])) {
-            $this->postModel->addPost($post);
+            $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
+            $this->postModel->addPost($post, $user_id);
             header('Location: ../public/index.php');
         }
         //require '../view/add_Post.php';
@@ -19,8 +20,10 @@ class BackController extends Controller
 
     public function updatePost($post, $post_id)
     {
+        var_dump($post);
         $post = $this->postModel->showPost($post_id);
-        if(isset($post->submit)) {
+        if(isset($_POST['submit'])) {
+            $user_id = 1;
             $this->postModel->updatePost($post, $post_id);
             header('Location: ../public/index.php');
         }

@@ -35,10 +35,12 @@ class CommentModel extends Db
         //return $this->manageRequest($sql, [$post_id]);
     }
 
-    public function addComment($post, $post_id)// l'ajout d'un commentaire
+    public function addComment($post, $post_id, $user_id)// l'ajout d'un commentaire
     {
-        $sql = 'INSERT INTO comments (titleComment, contentComment, created_at, post_id) VALUES (?, ?, NOW(), ?)';
-        $this->manageRequest($sql, [$titleComment, $contentComment, $post_id]);
+        extract($post);
+        var_dump($post);
+        $sql = 'INSERT INTO comments (titleComment, contentComment, user_id, post_id, created_at, published) VALUES (?,?,?,?, NOW(),?)';
+        $this->manageRequest($sql, [$titleComment, $contentComment, $user_id, $post_id, 1]);
     }
     //$sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at) VALUES (?,?,?, NOW())';
     //$this->manageRequest($sql, [$titlePost, $headerPost, $contentPost]);
