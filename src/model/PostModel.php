@@ -2,6 +2,7 @@
 
 namespace App\src\model;
 
+use App\config\Param;
 use App\src\model\Post;
 
 class PostModel extends Db
@@ -44,13 +45,13 @@ class PostModel extends Db
 
     }
 
-    public function addPost($post, $user_id)//ajouter un article
+    public function addPost(Param $post, $user_id)//ajouter un article
     {
         // Récupérer les variables $titlePost, $headerPost et $contentPost
-        extract($post);
+        //extract($post);
         //faire une requete INSERT
         $sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at, actif, user_id) VALUES (?,?,?, NOW(),?,?)';
-        $this->manageRequest($sql, [$titlePost, $headerPost, $contentPost, 0, $user_id]);
+        $this->manageRequest($sql, [$post->get('titlePost'), $post->get('headerPost'), $post->get('contentPost'), 0, $user_id]);
     }
 
     //Modifier un article

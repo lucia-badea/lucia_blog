@@ -12,23 +12,26 @@ class Router
     private $backController;
     private $frontController;
     private $errorController;
+    private $httpRequest;
 
     public function __construct()
     {
         $this->backController = new BackController();
         $this->frontController = new FrontController();
         $this->errorController = new ErrorController();
+        $this->httpRequest = new HttpRequest();
     }
     public function run()
     {
         try {
             //si index.php a un parametre post, on va afficher la page single
-            if(isset($_GET['route'])) {
-                if($_GET['route'] === 'post'){
-                    $this->frontController->post($_GET['post_id']);
+            $route = $this->httpRequest->getGet()->get('route');
+            if(isset($route)) {
+                if($route === 'post'){
+                    $this->frontController->post($this->httpRequest->getGet()->get('post_id'));
             }
-            elseif($_GET['route'] === 'addPost'){
-                $this->backController->addPost($_POST);
+            elseif($route === 'addPost'){
+                $this->backController->addPost($this->httpRequest->getPost());
             }
             elseif($_GET['route'] === 'updatePost'){
                 $this->backController->updatePost($_POST, $_GET['post_id']);

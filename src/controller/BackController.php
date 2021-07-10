@@ -2,13 +2,16 @@
 
 namespace App\src\controller;
 
+use App\config\Param;
+
 class BackController extends Controller
 {
-    public function addPost($post)
+    public function addPost(Param $post)
     { //si le formulaire a été envoyé on fait appel à la méthode addPost
-        if(isset($post['submit'])) {
-            $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
-            $this->postModel->addPost($post, $user_id);
+        if($post->get('submit')) {
+        $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
+        $this->postModel->addPost($post, $user_id);
+        $this->session->set('add_Post', 'Votre article a été ajouté avec succés !');
             header('Location: ../public/index.php');
         }
         //require '../view/add_Post.php';
