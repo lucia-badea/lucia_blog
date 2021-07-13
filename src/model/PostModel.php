@@ -55,14 +55,15 @@ class PostModel extends Db
     }
 
     //Modifier un article
-    public function updatePost($post, $post_id)
+    public function updatePost(Param $post, $post_id)
     {
-        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost, updated_at=:NOW()
+        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost /*updated_at=:NOW()*/
         WHERE id=:post_id';
         $this->manageRequest($sql, [
-            $titlePost => $post['titlePost'],
-            $headerPost => $post['headerPost'],
-            $contentPost => $post['contentPost'],
+            'titlePost' => $post->get('titlePost'),
+            'headerPost' => $post->get('headerPost'),
+            'contentPost' => $post->get('contentPost'),
+            //'updated_at' => $post->get('updated_at'),
             'post_id' => $post_id
         ]);
     }

@@ -2,6 +2,7 @@
 $this->title = "Home";
 ?>
 <?= $this->session->display('add_Post'); ?>
+<?= $this->session->display('update_Post'); ?>
 <a href="../public/index.php?route=addPost">Ajouter un Article</a>
     <?php
     //while($post = $posts->fetch())

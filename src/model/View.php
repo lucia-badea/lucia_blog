@@ -22,7 +22,8 @@ class View // Classe qui gére les vues
         $content  = $this->renderFile($this->file, $data);
         $view = $this->renderFile('../view/base_view.php', [
             'title' => $this->title,
-            'content' => $content
+            'content' => $content,
+            'session' => $this->session
         ]);
         echo $view;
     }
