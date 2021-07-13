@@ -5,10 +5,13 @@ $this->title = "Modifier l'article";
     <form method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($article->getId()); ?>">
         <label for="titlePost">Titre</label><br>
         <input type="text" id="titlePost" name="titlePost" value="<?= htmlspecialchars($article->getTitlePost()); ?>"><br>
+        <?= isset($errors['titlePost']) ? $errors['titlePost'] : ''; ?>
         <label for="headerPost">L'êntete</label><br>
-        <textarea id="headerPost" name="headerPost"><?= htmlspecialchars($article->getHeaderPost()); ?></textarea><br>
+        <textarea id="headerPost" name="headerPost"> <?= htmlspecialchars($article->getHeaderPost()); ?></textarea><br>
+        <?= isset($errors['headerPost']) ? $errors['headerPost'] : ''; ?>
         <label for="contentPost">Contenu</label><br>
         <textarea id="contentPost" name="contentPost"><?= htmlspecialchars($article->getContentPost()); ?></textarea><br>
+        <?= isset($errors['contentPost']) ? $errors['contentPost'] : ''; ?>
         <input type="submit" value="Modifier l'article" id="submit" name="submit">
     </form>
     <a href="../public/index.php">Retour à l'accueil</a>

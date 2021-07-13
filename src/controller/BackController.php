@@ -33,13 +33,25 @@ class BackController extends Controller
         $article = $this->postModel->showPost($post_id);
 
         if($post->get('submit')) {
+            $errors = $this->validator->validateData($post, 'Article');
+            if(!$errors){
             $this->postModel->updatePost($post, $post_id);
             $this->session->set('update_Post', 'Votre article a été modifié avec succés');
             header('Location: ../public/index.php');
         }
         return $this->view->render('update_Post', [
-            'article' => $article
+            'article' => $article,
+            'errors' => $errors
         ]);
+        }
+        $post->set('id', $article->getid());
+        $post->set('title', $article->getTitlePost());
+        $post->set('content', $article->getHeaderPost());
+        $post->set('author', $article->getContentPost());
+
+    return $this->view->render('update_Post', [
+        'article' => $article
+    ]);
     } 
 
     
