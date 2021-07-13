@@ -53,11 +53,11 @@ class BackController extends Controller
         'article' => $article
     ]);
     } 
-
-    
+ 
     public function deletePost($post_id)
     {
         $this->postModel->deletePost($post_id);
+        $this->session->set('delete_Post', 'Votre article a été supprimé avec succés');
         header('Location: ../public/index.php');
     }
     

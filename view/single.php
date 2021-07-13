@@ -14,7 +14,7 @@ $this->title = "Article";
     <!--<p>Par : <?//= htmlspecialchars($post->lastName . ' ' . $post->firstName);?></p>-->
 </div>
 <br>
-<div class="update_post">
+<div>
     <a href="../public/index.php?route=updatePost&post_id=<?= $post->getId(); ?>">Modifier l'article</a>
     <a href="../public/index.php?route=deletePost&post_id=<?= $post->getId(); ?>">Supprimer l'article</a>
 </div>
