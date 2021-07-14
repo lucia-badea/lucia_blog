@@ -10,6 +10,10 @@ class Validator
             $postValidator = new PostValidator();
             return $postValidator->test($data);
         }
+        if($key === 'Comment') {
+            $commentValidator = new CommentValidator();
+            return $commentValidator->test($data);
+        }
         return null;
     }
 }
