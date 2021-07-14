@@ -33,14 +33,14 @@ class Router
             elseif($route === 'addPost'){
                 $this->backController->addPost($this->httpRequest->getPost());
             }
-            elseif($_GET['route'] === 'updatePost'){
-                $this->backController->updatePost($_POST, $_GET['post_id']);
+            elseif($route === 'updatePost'){
+                $this->backController->updatePost($this->httpRequest->getPost(), $this->httpRequest->getGet()->get('post_id'));
             }
             elseif($_GET['route'] === 'deletePost') {
-                $this->backController->deletePost($_GET['post_id']);
+                $this->backController->deletePost($this->httpRequest->getGet()->get('post_id'));
             }
             elseif($_GET['route'] === 'addComment'){
-                $this->frontController->addComment($_POST, $_GET['post_id']);
+                $this->frontController->addComment($this->httpRequest->getPost(), $this->httpRequest->getGet()->get('post_id'));
         }
             else {
                 $this->errorController->notFoundError();

@@ -2,6 +2,7 @@
 
 namespace App\src\model;
 
+use App\config\Param;
 use App\src\model\Comment;
 
 class CommentModel extends Db
@@ -35,12 +36,12 @@ class CommentModel extends Db
         //return $this->manageRequest($sql, [$post_id]);
     }
 
-    public function addComment($post, $post_id, $user_id)// l'ajout d'un commentaire
+    public function addComment(Param $post, $post_id, $user_id)// l'ajout d'un commentaire
     {
-        extract($post);
-        var_dump($post);
+        //extract($post);
+        //var_dump($post);
         $sql = 'INSERT INTO comments (titleComment, contentComment, user_id, post_id, created_at, published) VALUES (?,?,?,?, NOW(),?)';
-        $this->manageRequest($sql, [$titleComment, $contentComment, $user_id, $post_id, 1]);
+        $this->manageRequest($sql, [$post->get('titleComment'), $post->get('contentComment'), $user_id, $post_id, 1]);
     }
     //$sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at) VALUES (?,?,?, NOW())';
     //$this->manageRequest($sql, [$titlePost, $headerPost, $contentPost]);

@@ -2,14 +2,17 @@
 $this->title = "Modifier l'article";
  ?>
 <div>
-    <form method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($post->getId()); ?>">
-        <label for="titlePost">Titre de l'article</label><br>
-        <input type="text" id="titlePost" name="titlePost" value="<?= htmlspecialchars($post->getTitlePost()); ?>"><br>
+    <form method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($article->getId()); ?>">
+        <label for="titlePost">Titre</label><br>
+        <input type="text" id="titlePost" name="titlePost" value="<?= htmlspecialchars($article->getTitlePost()); ?>"><br>
+        <?= isset($errors['titlePost']) ? $errors['titlePost'] : ''; ?>
         <label for="headerPost">L'êntete</label><br>
-        <input type="text" id="headerPost" name="headerPost" value="<?= htmlspecialchars($post->getHeaderPost()); ?>"><br>
+        <textarea id="headerPost" name="headerPost"> <?= htmlspecialchars($article->getHeaderPost()); ?></textarea><br>
+        <?= isset($errors['headerPost']) ? $errors['headerPost'] : ''; ?>
         <label for="contentPost">Contenu</label><br>
-        <textarea id="contentPost" name="contentPost"><?= htmlspecialchars($post->getContentPost()); ?></textarea><br>
-        <input type="submit" value="Mettre à jour l'article" id="submit" name="submit">
+        <textarea id="contentPost" name="contentPost"><?= htmlspecialchars($article->getContentPost()); ?></textarea><br>
+        <?= isset($errors['contentPost']) ? $errors['contentPost'] : ''; ?>
+        <input type="submit" value="Modifier l'article" id="submit" name="submit">
     </form>
     <a href="../public/index.php">Retour à l'accueil</a>
 </div>

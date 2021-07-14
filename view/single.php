@@ -1,6 +1,7 @@
 <?php
 $this->title = "Article"; 
 ?>
+<?= $this->session->display('add_Comment'); ?>
 
 <?php
     //while($post = $posts->fetch())

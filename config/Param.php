@@ -19,8 +19,14 @@ class Param
         }
         return null;
     }
+
     public function set($name, $value)
     {
         $this->param[$name] = $value;
+    }
+
+    public function allParams() //récupérer toutes les données saisies
+    {
+        return $this->param;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\src\controller;
 
+use App\config\Param;
+
 class FrontController extends Controller
 {
     public function home() // cette méthode gére l'affichage de la page d'accueil
@@ -24,11 +26,12 @@ class FrontController extends Controller
         ]);
     }
     
-    public function addComment($post, $post_id)
+    public function addComment(Param $post, $post_id)
     {
-        if(isset($post['submit'])) {
+        if($post->get('submit')) {
             $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
             $this->commentModel->addComment($post, $post_id, $user_id);
+            $this->session->set('add_Comment', 'Votre commentaire a été ajouté avec succées !');
             header('Location: ../public/index.php?route=post&post_id='.$post_id);
         }
     }
