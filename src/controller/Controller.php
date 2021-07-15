@@ -6,12 +6,14 @@ use App\config\HttpRequest;
 use App\src\required\Validator;
 use App\src\model\PostModel;
 use App\src\model\CommentModel;
+use App\src\model\UserModel;
 use App\src\model\View;
 
 abstract class Controller //on va jamais l'instancier
 {
     protected $postModel;
     protected $commentModel;
+    protected $userModel;
     protected $view;
     protected $get;
     protected $post;
@@ -22,6 +24,7 @@ abstract class Controller //on va jamais l'instancier
     {
         $this->postModel = new PostModel();
         $this->commentModel = new CommentModel();
+        $this->userModel = new UserModel();
         $this->view = new View();
         $this->validator = new Validator();
         $httpRequest = new HttpRequest();

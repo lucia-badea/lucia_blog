@@ -10,31 +10,31 @@ class Session //gére la session courante
     {
         $this->session = $session;
     }
-    // $_SESSION[$name] = $value;
-    public function set($name, $value) //creation des variables de session
+    // $_SESSION[$key] = $value;
+    public function set($key, $value) //creation des variables de session
     {
-        $_SESSION[$name] = $value;
+        $_SESSION[$key] = $value;
     }
-    public function get($name)
+    public function get($key)
     {
-        if(isset($_SESSION[$name])) {
-            return $_SESSION[$name];
+        if(isset($_SESSION[$key])) {
+            return $_SESSION[$key];
         }
-        return false;
+        return null;
     }
-    public function display($name)
+    public function display($key)
     {
-        if(isset($_SESSION[$name]))
+        if(isset($_SESSION[$key]))
         {
-            $key = $this->get($name);
-            $this->remove($name);
-            return $key;
+            $name = $this->get($key);
+            $this->remove($key);
+            return $name;
         }
-        return false;
+        return null;
     }
-    public function remove($name)
+    public function remove($key)
     {
-        unset($_SESSION[$name]);//efface l'espace occupé par les variables de session
+        unset($_SESSION[$key]);//efface l'espace occupé par les variables de session
     }
     public function destroy()
     {

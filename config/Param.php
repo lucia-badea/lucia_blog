@@ -11,18 +11,18 @@ class Param
         $this->param = $param;
     }
     
-    public function get($name)
+    public function get($key)
     {
-        if(isset($this->param[$name]))
+        if(isset($this->param[$key]))
         {
-            return $this->param[$name];
+            return $this->param[$key];
         }
         return null;
     }
 
-    public function set($name, $value)
+    public function set($key, $value)
     {
-        $this->param[$name] = $value;
+        $this->param[$key] = $value;
     }
 
     public function allParams() //récupérer toutes les données saisies

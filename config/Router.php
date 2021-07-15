@@ -41,7 +41,11 @@ class Router
             }
             elseif($_GET['route'] === 'addComment'){
                 $this->frontController->addComment($this->httpRequest->getPost(), $this->httpRequest->getGet()->get('post_id'));
-        }
+            }
+            elseif($route === 'register'){
+                $this->frontController->register($this->httpRequest->getPost());
+            }
+
             else {
                 $this->errorController->notFoundError();
             }

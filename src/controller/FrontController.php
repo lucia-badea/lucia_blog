@@ -47,4 +47,14 @@ class FrontController extends Controller
      
     }
     }
+    
+    public function register(Param $post)
+    {
+    if($post->get('submit')) {
+        $this->userModel->register($post);
+        $this->session->set('register', 'Votre inscription a été effectuée avec succés');
+        header('Location: ../public/index.php');
+    }
+    return $this->view->render('register');
+    }   
 }

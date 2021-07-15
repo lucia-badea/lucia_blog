@@ -5,7 +5,10 @@ $this->title = "Home";
 <?= $this->session->display('update_Post'); ?>
 <?= $this->session->display('delete_Post'); ?>
 <?= $this->session->display('add_Comment'); ?>
+<?= $this->session->display('register'); ?>
 
+<a href="../public/index.php?route=authentication">Connectez-vous</a>
+<a href="../public/index.php?route=register">Inscrivez-vous</a>
 <a href="../public/index.php?route=addPost">Ajouter un Article</a>
     <?php
     //while($post = $posts->fetch())
