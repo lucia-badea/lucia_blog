@@ -25,6 +25,11 @@ class Post
     private $contentPost;
 
     /**
+     * @var string
+     */
+    private $editor;
+
+    /**
      * @var \DateTime
      */
     private $updated_at;
@@ -91,6 +96,22 @@ class Post
     public function setContentPost($contentPost)
     {
         $this->contentPost = $contentPost;
+    }
+
+        /**
+     * @return string
+     */
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    /**
+     * @param string $editor
+     */
+    public function setEditor($editor)
+    {
+        $this->editor = $editor;
     }
 
     /**

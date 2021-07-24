@@ -5,6 +5,7 @@ namespace App\src\model;
 use App\config\Param;
 use App\src\model\Post;
 
+
 class PostModel extends Db
 {
     //méthode object permet convertir chaque champ en proprieté de l'objet Post
@@ -16,11 +17,14 @@ class PostModel extends Db
         $post->setHeaderPost($row['headerPost']);
         $post->setContentPost($row['contentPost']);
         $post->setUpdated_at($row['updated_at']);
+        //$post->setEditor($row['lastName'], $row['firstName']);
+        $post->setEditor($row['firstName']);
+       
         return $post;
     }
     public function getPosts()//affiche tous les articles
     {
-        $sql = 'SELECT * FROM posts WHERE posts.actif = 1 ORDER BY id DESC';
+        $sql = 'SELECT posts.id, posts.titlePost, posts.headerPost, posts.contentPost, posts.updated_at, user.lastName, user.firstName, user.userName FROM posts INNER JOIN user ON posts.user_id = user.id WHERE posts.actif = 1 ORDER BY id DESC';
         $resultat = $this->manageRequest($sql);
         $posts = [];
         foreach ($resultat as $row){
@@ -30,6 +34,7 @@ class PostModel extends Db
         $resultat->closeCursor();
         return $posts;
     }
+
 
     public function showPost($post_id)//affiche un seul article
     {
@@ -55,16 +60,17 @@ class PostModel extends Db
     }
 
     //Modifier un article
-    public function updatePost(Param $post, $post_id)
+    public function updatePost(Param $post, $post_id, $user_id)
     {
-        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost /*updated_at=:NOW()*/
+        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost, user_id=:user_id /*updated_at=:NOW()*/
         WHERE id=:post_id';
         $this->manageRequest($sql, [
             'titlePost' => $post->get('titlePost'),
             'headerPost' => $post->get('headerPost'),
             'contentPost' => $post->get('contentPost'),
             //'updated_at' => $post->get('updated_at'),
-            'post_id' => $post_id
+            'post_id' => $post_id,
+            'user_id' => $user_id
         ]);
     }
 

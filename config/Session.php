@@ -36,6 +36,12 @@ class Session //gére la session courante
     {
         unset($_SESSION[$key]);//efface l'espace occupé par les variables de session
     }
+
+    public function build()
+    {
+        session_start();
+    }
+
     public function destroy()
     {
         session_destroy(); //ferme la session du visiteur

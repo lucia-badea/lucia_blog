@@ -10,9 +10,13 @@ class Validator
             $postValidator = new PostValidator();
             return $postValidator->test($data);
         }
-        if($key === 'Comment') {
+        elseif($key === 'Comment') {
             $commentValidator = new CommentValidator();
             return $commentValidator->test($data);
+        }
+        elseif($key === 'User') {
+            $userValidator = new UserValidator();
+            return $userValidator->test($data);
         }
         return null;
     }

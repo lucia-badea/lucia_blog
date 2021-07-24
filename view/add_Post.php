@@ -14,5 +14,5 @@ $this->title = "Ajouter un article";
         <?= isset($errors['contentPost']) ? $errors['contentPost'] : ''; ?>
         <input type="submit" value="Envoyer" id="submit" name="submit">
     </form>
-    <a href="../public/index.php">Retour à l'accueil</a>
+    <a href="../public/index.php">Revenir sur la Page Principale</a>
 </div>

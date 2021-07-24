@@ -29,9 +29,9 @@ class FrontController extends Controller
     public function addComment(Param $post, $post_id)
     {
         if($post->get('submit')) {
+            $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
             $errors = $this->validator->validateData($post, 'Comment');
             if(!$errors) {
-            $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
             $this->commentModel->addComment($post, $post_id, $user_id);
             $this->session->set('add_Comment', 'Votre commentaire a été ajouté avec succées !');
             header('Location: ../public/index.php?route=post&post_id='.$post_id);
@@ -51,10 +51,37 @@ class FrontController extends Controller
     public function register(Param $post)
     {
     if($post->get('submit')) {
+        $errors = $this->validator->validateData($post, 'User');
+        if(!$errors){
         $this->userModel->register($post);
-        $this->session->set('register', 'Votre inscription a été effectuée avec succés');
+        $this->session->set('register', 'Votre inscription a été effectuée avec succés !');
         header('Location: ../public/index.php');
     }
+    return $this->view->render('register', [
+        'post' => $post,
+        'errors' => $errors
+    ]);
+    } 
     return $this->view->render('register');
-    }   
+} 
+public function login(Param $post)
+{
+    if($post->get('submit')) {
+        $resultat = $this->userModel->login($post);
+        if($resultat && $resultat['isPasswordValid']) {
+            $this->session->set('login', 'Content de vous revoir !');
+            $this->session->set('id', $resultat['resultat']['id']);
+            $this->session->set('role', $resultat['resultat']['pseudo']);
+            $this->session->set('userName', $post->get('userName'));
+            header('Location: ../public/index.php');
+        }
+        else {
+            $this->session->set('error_conection', 'Le pseudo ou le mot de passe sont incorrects !');
+            return $this->view->render('login', [
+                'post'=> $post
+            ]);
+        }
+    }
+    return $this->view->render('login');
+}
 }

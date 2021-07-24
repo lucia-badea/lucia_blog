@@ -68,14 +68,14 @@ class User
       /**
      * @return string
      */
-    public function getfirstName()
+    public function getFirstName()
     {
         return $this->firstName;
     }
     /**
      * @param string $firstName
      */
-    public function setfirstName($firstName)
+    public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
     }
@@ -83,7 +83,7 @@ class User
       /**
      * @return string
      */
-    public function getlastName()
+    public function getLastName()
     {
         return $this->lastName;
     }

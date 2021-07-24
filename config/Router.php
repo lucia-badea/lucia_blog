@@ -45,6 +45,24 @@ class Router
             elseif($route === 'register'){
                 $this->frontController->register($this->httpRequest->getPost());
             }
+            elseif($route === 'login'){
+                $this->frontController->login($this->httpRequest->getPost());
+            }
+            elseif($route === 'compte'){
+                $this->backController->compte();
+            }
+            elseif($route === 'editPassword'){
+                $this->backController->editPassword($this->httpRequest->getPost());
+            }
+            elseif($route === 'logout'){
+                $this->backController->logout();
+            }
+            elseif($route === 'deleteCompte'){
+                $this->backController->deleteCompte();
+            }
+            elseif($route === 'admin'){
+                $this->backController->admin();
+            }
 
             else {
                 $this->errorController->notFoundError();
