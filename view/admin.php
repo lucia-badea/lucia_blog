@@ -5,11 +5,13 @@ $this->title = 'Admin';
 <?= $this->session->display('add_Post'); ?>
 <?= $this->session->display('update_Post'); ?>
 <?= $this->session->display('delete_Post'); ?>
+<?= $this->session->display('delete_Member'); ?>
 
 <h2>Les Articles</h2>
 <a href="../public/index.php?route=addPost">Ajouter un Article</a><br><br>
 <a href="../public/index.php">Revenir sur la Page Principale</a>
 
+<!-- mettre les articles de la Page Admin dans un tableau -->
 <table>
     <tr>
         <td>Id</td>
@@ -28,7 +30,7 @@ $this->title = 'Admin';
     <tr>
         <td><?= htmlspecialchars($post->getId());?></td>
         <td><?= htmlspecialchars($post->getTitlePost());?></td>
-        <td><?= substr(htmlspecialchars($post->getHeaderPost()), 0, 50);?></td>
+        <td><?= /*limiter l'affichage à 50 caracteres*/ substr(htmlspecialchars($post->getHeaderPost()), 0, 50);?></td>
         <td><?= substr(htmlspecialchars($post->getContentPost()), 0, 200);?></td>
         <td>Par : <?= htmlspecialchars($post->getEditor());?></td>
         <td>Créé le : <?= htmlspecialchars($post->getUpdated_at());?></td>
@@ -53,3 +55,42 @@ $this->title = 'Admin';
 <!--<h2>Les Commentaires signalés</h2>-->
 
 <h2>Les Utilisateurs</h2>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Pseudo</td>
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>Email</td>
+        <td>Role</td>
+        <td>Actions</td>
+    </tr>
+    <?php
+    foreach ($user as $user)
+    {
+        ?>
+        <tr>
+            <td><?= htmlspecialchars($user->getId());?></td>
+            <td><?= htmlspecialchars($user->getUserName());?></td>
+            <td><?= htmlspecialchars($user->getFirstName());?></td>
+            <td><?= htmlspecialchars($user->getLastName());?></td>
+            <td><?= htmlspecialchars($user->getEmail());?></td>
+            <td><?= htmlspecialchars($user->getRole());?></td>
+            <td>
+                <?php
+                if($user->getRole() != 'admin') {
+                ?>
+                <a href="../public/index.php?route=deleteMembre&user_id=<?= $user->getId(); ?>">Supprimer l'utilisateur</a>
+                <?php }
+                else {
+                    ?>
+                Suppresion impossible
+                <?php
+                }
+                ?>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>

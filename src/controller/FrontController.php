@@ -9,20 +9,24 @@ class FrontController extends Controller
     public function home() // cette méthode gére l'affichage de la page d'accueil
     {
         $posts = $this->postModel->getPosts();
+        $user = $this->userModel->showUsers();
         //require '../view/home.php'; 
         return $this->view->render('home', [
-            'posts' => $posts
+            'posts' => $posts,
+            'user' => $user
         ]);
     }
 
     public function post($post_id)
     {
         $post = $this->postModel->showPost($post_id);
-        $comments = $this->commentModel->findCommentsByPost($_GET['post_id']);      
+        $comments = $this->commentModel->findCommentsByPost($_GET['post_id']); 
+        $user = $this->userModel->showUsers();     
         //require '../view/single.php';
         return $this->view->render('single', [
             'post' => $post,
-            'comments' => $comments
+            'comments' => $comments,
+            'user' => $user
         ]);
     }
     

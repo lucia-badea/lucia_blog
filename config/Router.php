@@ -63,6 +63,9 @@ class Router
             elseif($route === 'admin'){
                 $this->backController->admin();
             }
+            elseif($route === 'deleteMembre'){
+                $this->backController->deleteMembre($this->httpRequest->getGet()->get('user_id'));
+            }
 
             else {
                 $this->errorController->notFoundError();
