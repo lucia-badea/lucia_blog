@@ -23,7 +23,14 @@ $this->title = "Article";
 // $posts->closeCursor();
 ?>
 <a href="../public/index.php">Revenir sur la Page Principale</a>
-<div id="comments">
+<?php
+if (empty($comments))
+{
+?>
+<p>Aucun commentaire n'a encore été posté. Soyez le premier à en laisser un !</p>
+<?php
+}
+?>
     <h3>Ajouter un commentaire</h3>
     <?php require('add_Comment.php'); ?>
     <h3>Commentaires</h3>
@@ -39,12 +46,8 @@ $this->title = "Article";
     <p>Commenté par : <?= htmlspecialchars($post->getEditor());?></p>
     <?php
     }
+
     // $comments->closeCursor();
     ?>
-<!--<form action="../public/index.php?route=addComment" method="POST">
-    <h3>Vous voulez réagir ? Faites le ici !</h3>
-    <textarea name="content" id="" cols="30" rows="10" placeholder="Votre commentaire ..."></textarea>
-    <input type="hidden" name="post_id" value="<?//= $post_id ?>">
-    <button>Commenter !</button>
-</form>-->
-</div>
+           
+

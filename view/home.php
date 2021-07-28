@@ -1,8 +1,6 @@
 <?php
 $this->title = "Home";
 ?>
-
-<?= $this->session->display('add_Comment'); ?>
 <?= $this->session->display('register'); ?>
 <?= $this->session->display('login'); ?>
 <?= $this->session->display('logout'); ?>

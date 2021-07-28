@@ -33,11 +33,11 @@ class FrontController extends Controller
     public function addComment(Param $post, $post_id)
     {
         if($post->get('submit')) {
-            $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
+           // $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
             $errors = $this->validator->validateData($post, 'Comment');
             if(!$errors) {
-            $this->commentModel->addComment($post, $post_id, $user_id);
-            $this->session->set('add_Comment', 'Votre commentaire a été ajouté avec succées !');
+            $this->commentModel->addComment($post, $post_id, $this->session->get('id'));
+            $this->session->set('add_Comment', 'Votre commentaire a été soumis pour la validation !');
             header('Location: ../public/index.php?route=post&post_id='.$post_id);
         }
         $article = $this->postModel->showPost($post_id);
@@ -88,4 +88,5 @@ public function login(Param $post)
     }
     return $this->view->render('login');
 }
+
 }

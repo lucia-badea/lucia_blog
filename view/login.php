@@ -1,7 +1,6 @@
 <?php
 $this->title = "Connexion";
  ?>
-
 <?= $this->session->display('error_conection'); ?>
 
 <div>

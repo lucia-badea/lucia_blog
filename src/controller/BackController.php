@@ -21,7 +21,7 @@ class BackController extends Controller
             //si le formulaire n'a pas été envoyé on fait rien
             return $this->view->render('add_Post', [
                 'post' => $post, //le contenu saisi par l'utilisateur
-            '   errors' =>$errors //les éventuelles erreurs detectés par le validator
+                'errors' =>$errors //les éventuelles erreurs detectés par le validator
             ]);
             }
         return $this->view->render('add_Post', [
@@ -121,9 +121,12 @@ class BackController extends Controller
         if($this->testAdmin()){
             $posts = $this->postModel->getPosts();
             $user = $this->userModel->showUsers();
+            $comments = $this->commentModel->getListNotApprovedComments();
+            //$comments = $this->commentModel->getListApprovedComments();
             return $this->view->render('admin', [
                 'posts' => $posts,
-                'user' => $user
+                'user' => $user, 
+                'comments' => $comments
             ]);
         }
     }
@@ -147,4 +150,21 @@ class BackController extends Controller
             return true;
         }
     }
+    public function isApprovedComment($comment_id)
+{
+    if($this->testAdmin()){
+    $this->commentModel->isApprovedComment($comment_id);
+    $this->session->set('published_Comment', 'Le commentaire a été validé avec succés !');
+    header('Location: ../public/index.php?route=admin');
+    }
+}
+    public function deleteComment($comment_id)
+    {
+        if($this->testAdmin()){
+        $this->commentModel->deleteComment($comment_id);
+        $this->session->set('delete_Comment', 'Le commentaire a été supprimé avec succés !');
+        header('Location: ../public/index.php?route=admin');
+        }
+    }
+    
 }

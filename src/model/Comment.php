@@ -24,6 +24,11 @@ class Comment
      */
     private $created_at;
 
+        /**
+     * @var bool
+     */
+    private $published;
+
        /**
      * @return int
      */
@@ -86,5 +91,21 @@ class Comment
     public function setCreated_at($created_at)
     {
         $this->created_at = $created_at;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isApprovedComment()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param bool $published
+     */
+    public function setIsApprovedComment($published)
+    {
+        $this->published = $published;
     }
 }

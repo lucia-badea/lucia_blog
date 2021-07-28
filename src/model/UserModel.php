@@ -42,7 +42,7 @@ class UserModel extends Db
 
     public function login(Param $post)
     {
-        $sql = 'SELECT user.id, user.password, user.password, role.description, role.pseudo FROM user INNER JOIN role  ON role.id = user.role_id WHERE userName = ?';
+        $sql = 'SELECT user.id, user.password, role.description, role.pseudo FROM user INNER JOIN role ON role.id = user.role_id WHERE userName = ?';
         $data = $this->manageRequest($sql, [$post->get('userName')]);
         $resultat = $data->fetch();
         $isPasswordValid = password_verify($post->get('password'), $resultat['password']);

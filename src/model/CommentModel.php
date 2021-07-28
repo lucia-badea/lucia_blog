@@ -14,14 +14,15 @@ class CommentModel extends Db
         $comment->setTitleComment($row['titleComment']);
         $comment->setContentComment($row['contentComment']);
         $comment->setCreated_at($row['created_at']);
+        $comment->setIsApprovedComment($row['published']);
         return $comment;
     }
     public function findCommentsByPost($post_id)
     {
-        $sql = 'SELECT comments.id, comments.titleComment, comments.contentComment, comments.created_at, user.firstName, user.lastName FROM comments
+        $sql = 'SELECT comments.id, comments.titleComment, comments.contentComment, comments.created_at, comments.published, user.firstName, user.lastName, user.userName FROM comments
         INNER JOIN user
         ON user.id=comments.user_id
-        WHERE post_id = ?
+        WHERE post_id = ? AND published = 1
         ORDER BY created_at DESC';
         $resultat = $this->manageRequest($sql, [$post_id]);
         $comments = [];
@@ -41,8 +42,55 @@ class CommentModel extends Db
         //extract($post);
         //var_dump($post);
         $sql = 'INSERT INTO comments (titleComment, contentComment, user_id, post_id, created_at, published) VALUES (?,?,?,?, NOW(),?)';
-        $this->manageRequest($sql, [$post->get('titleComment'), $post->get('contentComment'), $user_id, $post_id, 1]);
+        $this->manageRequest($sql, [$post->get('titleComment'), $post->get('contentComment'), $user_id, $post_id, 0]);
     }
     //$sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at) VALUES (?,?,?, NOW())';
     //$this->manageRequest($sql, [$titlePost, $headerPost, $contentPost]);
+
+    public function isApprovedComment($comment_id)
+    {
+        $sql = "UPDATE comments SET published = ? WHERE id = ?";
+        $this->manageRequest($sql, [1, $comment_id]);
+    }
+
+    public function deleteComment($comment_id)
+    {
+        $sql = "DELETE FROM comments WHERE id = ?";
+        $this->manageRequest($sql, [$comment_id]);
+    }
+
+    public function getListNotApprovedComments()
+    {
+        $sql = 'SELECT comments.id, comments.titleComment, comments.contentComment, comments.created_at, comments.published, user.firstName, user.lastName, user.userName FROM comments
+        INNER JOIN user
+        ON user.id=comments.user_id
+        WHERE published = 0
+        ORDER BY created_at DESC';
+        $resultat = $this->manageRequest($sql, [0]);
+        $comments = [];
+        foreach ($resultat as $row) {
+            $comment_id = $row['id'];
+            $comments[$comment_id] = $this->object($row);
+        }
+        $resultat->closeCursor();
+        return $comments;
+    }
+
+    public function getListApprovedComments()
+    {
+        $sql = 'SELECT comments.id, comments.titleComment, comments.contentComment, comments.created_at, comments.published, user.firstName, user.lastName FROM comments
+        INNER JOIN user
+        ON user.id=comments.user_id
+        WHERE published = 1
+        ORDER BY created_at DESC';
+        $resultat = $this->manageRequest($sql, [1]);
+        $comments = [];
+        foreach ($resultat as $row) {
+            $comment_id = $row['id'];
+            $comments[$comment_id] = $this->object($row);
+        }
+        $resultat->closeCursor();
+        return $comments;
+    }
+
 }

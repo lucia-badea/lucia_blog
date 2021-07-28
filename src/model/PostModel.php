@@ -56,19 +56,18 @@ class PostModel extends Db
         //extract($post);
         //faire une requete INSERT
         $sql = 'INSERT INTO posts (titlePost, headerPost, contentPost, updated_at, actif, user_id) VALUES (?,?,?, NOW(),?,?)';
-        $this->manageRequest($sql, [$post->get('titlePost'), $post->get('headerPost'), $post->get('contentPost'), 0, $user_id]);
+        $this->manageRequest($sql, [$post->get('titlePost'), $post->get('headerPost'), $post->get('contentPost'), 1, $user_id]);
     }
 
     //Modifier un article
     public function updatePost(Param $post, $post_id, $user_id)
     {
-        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost, user_id=:user_id /*updated_at=:NOW()*/
+        $sql = 'UPDATE posts SET titlePost=:titlePost, headerPost=:headerPost, contentPost=:contentPost, user_id=:user_id, updated_at = NOW()
         WHERE id=:post_id';
         $this->manageRequest($sql, [
             'titlePost' => $post->get('titlePost'),
             'headerPost' => $post->get('headerPost'),
             'contentPost' => $post->get('contentPost'),
-            //'updated_at' => $post->get('updated_at'),
             'post_id' => $post_id,
             'user_id' => $user_id
         ]);

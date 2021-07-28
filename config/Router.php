@@ -66,6 +66,13 @@ class Router
             elseif($route === 'deleteMembre'){
                 $this->backController->deleteMembre($this->httpRequest->getGet()->get('user_id'));
             }
+            elseif($route === 'isApprovedComment'){
+                $this->backController->isApprovedComment($this->httpRequest->getGet()->get('comment_id'));
+            }
+
+            elseif($route === 'deleteComment'){
+                $this->backController->deleteComment($this->httpRequest->getGet()->get('comment_id'));
+            }
 
             else {
                 $this->errorController->notFoundError();

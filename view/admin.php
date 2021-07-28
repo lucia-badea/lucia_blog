@@ -1,17 +1,18 @@
 <?php 
 $this->title = 'Admin'; 
 ?>
-
 <?= $this->session->display('add_Post'); ?>
 <?= $this->session->display('update_Post'); ?>
 <?= $this->session->display('delete_Post'); ?>
 <?= $this->session->display('delete_Member'); ?>
+<?= $this->session->display('published_Comment'); ?>
+<?= $this->session->display('delete_Comment'); ?>
 
 <h2>Les Articles</h2>
 <a href="../public/index.php?route=addPost">Ajouter un Article</a><br><br>
 <a href="../public/index.php">Revenir sur la Page Principale</a>
 
-<!-- mettre les articles de la Page Admin dans un tableau -->
+<!-- on a mis les articles de la Page Admin dans un tableau -->
 <table>
     <tr>
         <td>Id</td>
@@ -48,12 +49,37 @@ $this->title = 'Admin';
     //$posts->closeCursor();
     ?>
    </table> 
+   <h2>Les Commentaires publiés</h2>
 
-   
-
-
-<!--<h2>Les Commentaires signalés</h2>-->
-
+<h2>Les Commentaires en attente de validation</h2>
+<table>
+    <tr>
+        <td>Le titre</td>
+        <td>Le contennu</td>
+        <td>Date de création</td>
+        <td>L'auteur</td>
+        <td>Actions</td>
+    </tr>
+<?php
+foreach($comments as $comment)
+    {
+    ?>
+    <tr>
+    <!--<h4><?//= htmlspecialchars($comment->lastName . ' ' . $comment->firstName);?></h4>-->
+    <td><?= htmlspecialchars($comment->getTitleComment());?></td>
+    <td><?= substr(htmlspecialchars($comment->getContentComment()), 0, 100);?></td>
+    <td>Posté le <?= htmlspecialchars($comment->getCreated_at());?></td>
+    <td><?= htmlspecialchars($post->getEditor());?></td>
+    <td>
+    <a href="../public/index.php?route=isApprovedComment&comment_id=<?= $comment->getId(); ?>">Valider</a>
+    <a href="../public/index.php?route=deleteComment&comment_id=<?= $comment->getId(); ?>">Supprimer</a>  
+    </td>
+    </tr>  
+    <?php
+    }
+    // $comments->closeCursor();
+    ?>
+    </table>
 <h2>Les Utilisateurs</h2>
 <table>
     <tr>
