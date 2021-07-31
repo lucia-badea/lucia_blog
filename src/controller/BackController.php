@@ -6,7 +6,7 @@ use App\config\Param;
 
 class BackController extends Controller
 {
-    public function addPost(Param $post)
+    public function addPost(Param $post)//méthode qui gére l'ajout d'un article
     { //si le formulaire a été envoyé on fait appel à la méthode addPost
         if($this->testAdmin()) {
             if($post->get('submit')) {
@@ -30,7 +30,7 @@ class BackController extends Controller
         }
     }
 
-    public function updatePost(Param $post, $post_id)
+    public function updatePost(Param $post, $post_id)//méthode qui gére la mise à jour d'un article
     {
         if($this->testAdmin()) {
             $article = $this->postModel->showPost($post_id);
@@ -58,7 +58,7 @@ class BackController extends Controller
         }
     } 
  
-    public function deletePost($post_id)
+    public function deletePost($post_id)//méthode qui gére la suppresion d'un article
     {
         if($this->testAdmin()){
             $this->postModel->deletePost($post_id);
@@ -67,14 +67,14 @@ class BackController extends Controller
         }
     }
 
-    public function compte()
+    public function compte()//méthode qui gére l'affichage de la page Profil
     {
         if($this->testIfLoggedIn()) {
             return $this->view->render('mon_Compte');
         }
     }
 
-    public function editPassword(Param $post)
+    public function editPassword(Param $post)//méthode qui gére la modification du mot de passe
     {
         if($this->testIfLoggedIn()){
             if($post->get('submit')) {
@@ -86,7 +86,7 @@ class BackController extends Controller
         }
     }
 
-    public function deleteMembre($user_id)
+    public function deleteMembre($user_id)//méthode qui gére la suppresion d'un utilisateur
     {
         if($this->testAdmin()){
             $this->userModel->deleteMembre($user_id);
@@ -95,7 +95,7 @@ class BackController extends Controller
         }
     }
     
-    public function logout()
+    public function logout() //méthode qui gére la deconnexion
     {
         if($this->testIfLoggedIn()){
             $this->session->destroy();
@@ -105,7 +105,7 @@ class BackController extends Controller
         }
     }
 
-    public function deleteCompte()
+    public function deleteCompte()//méthode qui gére la suppresion d'un compte
     {
         if($this->testIfLoggedIn()){
             $this->userModel->deleteCompte($this->session->get('userName'));
@@ -116,7 +116,7 @@ class BackController extends Controller
         }
     }
 
-    public function admin()
+    public function admin()//méthode qui gére le compte Administrateur
     {
         if($this->testAdmin()){
             $posts = $this->postModel->getPosts();
@@ -150,7 +150,7 @@ class BackController extends Controller
             return true;
         }
     }
-    public function isApprovedComment($comment_id)
+    public function isApprovedComment($comment_id) //tester si c'est un commentaire approuvé par admin
 {
     if($this->testAdmin()){
     $this->commentModel->isApprovedComment($comment_id);
@@ -158,7 +158,7 @@ class BackController extends Controller
     header('Location: ../public/index.php?route=admin');
     }
 }
-    public function deleteComment($comment_id)
+    public function deleteComment($comment_id)//méthode qui gére la suppresion d'un commentaire
     {
         if($this->testAdmin()){
         $this->commentModel->deleteComment($comment_id);

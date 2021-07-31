@@ -18,6 +18,10 @@ class Validator
             $userValidator = new UserValidator();
             return $userValidator->test($data);
         }
+        elseif($key === 'Contact') {
+            $userValidator = new ContactValidator();
+            return $contactValidator->test($data);
+        }
         return null;
     }
 }

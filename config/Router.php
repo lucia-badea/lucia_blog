@@ -73,6 +73,9 @@ class Router
             elseif($route === 'deleteComment'){
                 $this->backController->deleteComment($this->httpRequest->getGet()->get('comment_id'));
             }
+            elseif($route === 'contactForm'){
+                $this->frontController->contactForm($this->httpRequest->getPost(), $this->httpRequest->getGet());
+            }
 
             else {
                 $this->errorController->notFoundError();

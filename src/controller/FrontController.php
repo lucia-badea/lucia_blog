@@ -3,6 +3,7 @@
 namespace App\src\controller;
 
 use App\config\Param;
+use App\src\services\Mailer;
 
 class FrontController extends Controller
 {
@@ -17,7 +18,7 @@ class FrontController extends Controller
         ]);
     }
 
-    public function post($post_id)
+    public function post($post_id) //cette méthode affiche un seul article
     {
         $post = $this->postModel->showPost($post_id);
         $comments = $this->commentModel->findCommentsByPost($_GET['post_id']); 
@@ -30,7 +31,7 @@ class FrontController extends Controller
         ]);
     }
     
-    public function addComment(Param $post, $post_id)
+    public function addComment(Param $post, $post_id) //méthode qui gére l'ajout d'un article
     {
         if($post->get('submit')) {
            // $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
@@ -49,10 +50,10 @@ class FrontController extends Controller
             'errors' => $errors// retourne les éventuelles erreurs detectés par le validator 
         ]);
      
-    }
+        }
     }
     
-    public function register(Param $post)
+    public function register(Param $post) //méthode qui gére l'inscription
     {
     if($post->get('submit')) {
         $errors = $this->validator->validateData($post, 'User');
@@ -60,16 +61,17 @@ class FrontController extends Controller
         $this->userModel->register($post);
         $this->session->set('register', 'Votre inscription a été effectuée avec succés !');
         header('Location: ../public/index.php');
-    }
+         }
     return $this->view->render('register', [
         'post' => $post,
         'errors' => $errors
     ]);
     } 
     return $this->view->render('register');
-} 
-public function login(Param $post)
-{
+    } 
+
+    public function login(Param $post)//méthode qui gére la connexion
+    {
     if($post->get('submit')) {
         $resultat = $this->userModel->login($post);
         if($resultat && $resultat['isPasswordValid']) {
@@ -84,9 +86,15 @@ public function login(Param $post)
             return $this->view->render('login', [
                 'post'=> $post
             ]);
+            }
         }
-    }
     return $this->view->render('login');
-}
+    }
+
+    public function contactForm() //méthode qui gére l'envoie de emails dans contact Form
+    {
+       // $this->mailer->send();
+        return $this->view->render('contact_Form');
+    }
 
 }

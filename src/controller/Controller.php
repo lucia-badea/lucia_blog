@@ -8,6 +8,7 @@ use App\src\model\PostModel;
 use App\src\model\CommentModel;
 use App\src\model\UserModel;
 use App\src\model\View;
+use App\src\services\Mailer;
 
 abstract class Controller //on va jamais l'instancier
 {
@@ -19,6 +20,7 @@ abstract class Controller //on va jamais l'instancier
     protected $post;
     protected $session;
     protected $validator;
+    protected $mailer;
 
     public function __construct()
     {
@@ -28,6 +30,7 @@ abstract class Controller //on va jamais l'instancier
         $this->view = new View();
         $this->validator = new Validator();
         $httpRequest = new HttpRequest();
+        $this->mailer = new Mailer();
         $this->get = $httpRequest->getGet();
         $this->post = $httpRequest->getPost();
         $this->session = $httpRequest->getSession();
