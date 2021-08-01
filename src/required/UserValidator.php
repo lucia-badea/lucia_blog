@@ -35,10 +35,10 @@ class UserValidator extends Validator
             $error = $this->testLastName($key, $value);
             $this->addError($key, $error);
         }
-        /*elseif ($key === 'email') {
+        elseif ($key === 'email') {
             $error = $this->testEmail($key, $value);
             $this->addError($key, $error);
-        }*/
+        }
         elseif ($key === 'password') {
             $error = $this->testPassword($key, $value);
             $this->addError($key, $error);
@@ -105,7 +105,7 @@ class UserValidator extends Validator
         }
         return null;
     }
-    /*private function testEmail($key, $value)
+    private function testEmail($key, $value)
     {
         if($this->required->notEmpty($key, $value)) {
             return $this->required->notEmpty('email', $value);
@@ -113,9 +113,12 @@ class UserValidator extends Validator
         if($this->required->testMinLength($key, $value, 2)) {
             return $this->required->testMinLength('email', $value, 2);
         }
-        if($this->required->testEmail($key, $value, $email)) {
-            return $this->required->testEmail('email', $value, $email);
+        if($this->required->testMaxLength($key, $value, 100)) {
+            return $this->required->testMaxLength('email', $value, 100);
+        }
+        if($this->required->testEmail($key, $value)) {
+            return $this->required->testEmail('email', $value);
         }
         return null;
-    }*/
+    }
 }

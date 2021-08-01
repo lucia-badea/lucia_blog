@@ -12,6 +12,7 @@
         <?= isset($errors['lastName']) ? $errors['lastName'] : ''; ?>
         <label for="email">E-maill</label><br>
         <input type="email" id="email" name="email"><br>
+        <?= isset($errors['email']) ? $errors['email'] : ''; ?>
         <label for="password">Mot de passe</label><br>
         <input type="password" id="password" name="password"><br>
         <?= isset($errors['password']) ? $errors['password'] : ''; ?>

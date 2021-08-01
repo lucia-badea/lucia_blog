@@ -19,7 +19,7 @@ class Validator
             return $userValidator->test($data);
         }
         elseif($key === 'Contact') {
-            $userValidator = new ContactValidator();
+            $contactValidator = new ContactValidator();
             return $contactValidator->test($data);
         }
         return null;

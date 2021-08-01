@@ -31,8 +31,8 @@ class ContactValidator extends Validator
             $error = $this->testEmail($key, $value);
             $this->addError($key, $error);
         }
-        elseif($key === 'subject') {
-            $error = $this->testSubject($key, $value);
+        elseif($key === 'object') {
+            $error = $this->testObject($key, $value);
             $this->addError($key, $error);
         }
         elseif($key === 'message') {
@@ -74,21 +74,21 @@ class ContactValidator extends Validator
         if($this->required->testMaxLength($key, $value, 255)) {
             return $this->required->testMaxLength('email', $value, 255);
         }
-        if($this->required->testEmail($key, $value, $email)) {
-            return $this->required->testEmail('email', $value, $email);
+        if($this->required->testEmail($key, $value)) {
+            return $this->required->testEmail('email', $value);
         }
         //return null;
     }
-    private function testSubject($key, $value)
+    private function testObject($key, $value)
     {
         if($this->required->notEmpty($key, $value)) {
-            return $this->required->notEmpty('objet', $value);
+            return $this->required->notEmpty('object', $value);
         }
         if($this->required->testMinLength($key, $value, 2)) {
-            return $this->required->testMinLength('objet', $value, 2);
+            return $this->required->testMinLength('object', $value, 2);
         }
         if($this->required->testMaxLength($key, $value, 255)) {
-            return $this->required->testMaxLength('objet', $value, 255);
+            return $this->required->testMaxLength('object', $value, 255);
         }
         //return null;
     }

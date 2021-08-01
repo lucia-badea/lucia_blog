@@ -91,10 +91,21 @@ class FrontController extends Controller
     return $this->view->render('login');
     }
 
-    public function contactForm() //méthode qui gére l'envoie de emails dans contact Form
+    public function contactForm(Param $post) //méthode qui gére l'envoie de emails dans contact Form
     {
-       // $this->mailer->send();
-        return $this->view->render('contact_Form');
+            if($post->get('submit')) {
+                $errors = $this->validator->validateData($post, 'Contact');
+                if(!$errors){
+                $this->mailer->send($post);
+                $this->session->set('contact_Form', 'Votre email a été envoyé avec succés ! Vous recevrez un reponse dans maximum 2 jours !');
+                header('Location: ../public/index.php');
+                 }
+            return $this->view->render('contact_Form', [
+                'post' => $post,
+                'errors' => $errors
+            ]);
+            } 
+            return $this->view->render('contact_Form');
     }
 
 }

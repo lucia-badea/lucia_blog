@@ -25,11 +25,9 @@ class Required
         }
         return null;
     }
-    public function testEmail($key, $value, $email)
+    public function testEmail($key, $value)
     {
-        $email = test_input($post['email']);
-
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($value, FILTER_VALIDATE_EMAIL)){
             return '<p>Votre adresse email n\'est pas valide !</p>';
         }
         return null;
