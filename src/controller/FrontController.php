@@ -98,7 +98,7 @@ class FrontController extends Controller
                 if(!$errors){
                 $this->mailer->send($post);
                 $this->session->set('contact_Form', 'Votre email a été envoyé avec succés ! Vous recevrez un reponse dans maximum 2 jours !');
-                header('Location: ../public/index.php');
+               // header('Location: ../public/index.php?route=contactForm');
                  }
             return $this->view->render('contact_Form', [
                 'post' => $post,
