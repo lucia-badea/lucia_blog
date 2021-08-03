@@ -56,39 +56,39 @@ class UserValidator extends Validator
     private function testUserName($key, $value)
     {
         if($this->required->notEmpty($key, $value)) {
-            return $this->required->notEmpty('userName', $value);
+            return $this->required->notEmpty('pseudo', $value);
         }
         if($this->required->testMinLength($key, $value, 2)) {
-            return $this->required->testMinLength('userName', $value, 2);
+            return $this->required->testMinLength('pseudo', $value, 2);
         }
         if($this->required->testMaxLength($key, $value, 100)) {
-            return $this->required->testMaxLength('userName', $value, 100);
+            return $this->required->testMaxLength('pseudo', $value, 100);
         }
         return null;
     }
     private function testFirstName($key, $value)
     {
         if($this->required->notEmpty($key, $value)) {
-            return $this->required->notEmpty('firstName', $value);
+            return $this->required->notEmpty('nom', $value);
         }
         if($this->required->testMinLength($key, $value, 2)) {
-            return $this->required->testMinLength('firstName', $value, 2);
+            return $this->required->testMinLength('nom', $value, 2);
         }
         if($this->required->testMaxLength($key, $value, 100)) {
-            return $this->required->testMaxLength('firstName', $value, 100);
+            return $this->required->testMaxLength('nom', $value, 100);
         }
         return null;
     }
     private function testLastName($key, $value)
     {
         if($this->required->notEmpty($key, $value)) {
-            return $this->required->notEmpty('lastName', $value);
+            return $this->required->notEmpty('prenom', $value);
         }
         if($this->required->testMinLength($key, $value, 2)) {
-            return $this->required->testMinLength('lastName', $value, 2);
+            return $this->required->testMinLength('prenom', $value, 2);
         }
         if($this->required->testMaxLength($key, $value, 100)) {
-            return $this->required->testMaxLength('lastName', $value, 100);
+            return $this->required->testMaxLength('prenom', $value, 100);
         }
         return null;
     }

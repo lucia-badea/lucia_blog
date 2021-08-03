@@ -2,21 +2,40 @@
 $this->title = "Article"; 
 ?>
 <?= $this->session->display('add_Comment'); ?>
-
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('assets/img/about-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1><?= htmlspecialchars($post->getTitlePost());?></h1>
+                            <h2 class="subheading"><?= htmlspecialchars($post->getHeaderPost());?></h2>
+                            <span class="meta">
+                            <p>Créé par <?= htmlspecialchars($post->getEditor());?> le : <?= htmlspecialchars($post->getUpdated_at());?> </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 <?php
     //while($post = $posts->fetch())
     {
 ?>
-<div>
-    <h2><?= htmlspecialchars($post->getTitlePost());?></h2>
-    <p><?= htmlspecialchars($post->getHeaderPost());?></p>
+      <!-- Post Content-->
+      <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+
+
     <p><?= htmlspecialchars($post->getContentPost());?></p>
-    <p>Créé le : <?= htmlspecialchars($post->getUpdated_at());?></p> 
-    <p>Par : <?= htmlspecialchars($post->getEditor());?></p>
     <!--<h4><?//= htmlspecialchars($post->lastName . ' ' . $post->firstName);?></h4>-->
-    
-</div>
-<br>
+    </div>
+                </div>
+            </div>
+        </article>  
+
 
 <?php
 }
