@@ -1,5 +1,5 @@
-<?php 
-$this->title = 'Admin'; 
+<?php
+$this->title = 'Admin';
 ?>
 <?= $this->session->display('add_Post'); ?>
 <?= $this->session->display('update_Post'); ?>
@@ -8,115 +8,143 @@ $this->title = 'Admin';
 <?= $this->session->display('published_Comment'); ?>
 <?= $this->session->display('delete_Comment'); ?>
 
-<h2>Les Articles</h2>
-<a href="../public/index.php?route=addPost">Ajouter un Article</a><br><br>
-<a href="../public/index.php">Revenir sur la Page Principale</a>
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('assets/img/admin.jpg')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Espace Administrateur</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-<!-- on a mis les articles de la Page Admin dans un tableau -->
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Titre</td>
-        <td>Entête</td>
-        <td>Contenu</td>
-        <td>Auteur</td>
-        <td>Date</td>
-        <td>Actions</td>
-    </tr>
-    <?php
-    //while($post = $posts->fetch())
-    foreach ($posts as $post)
-    {
-    ?>
-    <tr>
-        <td><?= htmlspecialchars($post->getId());?></td>
-        <td><?= htmlspecialchars($post->getTitlePost());?></td>
-        <td><?= /*limiter l'affichage à 50 caracteres*/ substr(htmlspecialchars($post->getHeaderPost()), 0, 50);?></td>
-        <td><?= substr(htmlspecialchars($post->getContentPost()), 0, 200);?></td>
-        <td>Par : <?= htmlspecialchars($post->getEditor());?></td>
-        <td>Créé le : <?= htmlspecialchars($post->getUpdated_at());?></td>
-        
-        
-        <td><a href="../public/index.php?route=post&post_id=<?= htmlspecialchars($post->getId()); ?>">Lire la suite</a></td>
-        <td>
-            <a href="../public/index.php?route=updatePost&post_id=<?= $post->getId(); ?>">Modifier l'article</a>
-            <a href="../public/index.php?route=deletePost&post_id=<?= $post->getId(); ?>">Supprimer l'article</a>
-        </td>
-    </tr>
-    <br>
-    <?php
-    }
-    //$posts->closeCursor();
-    ?>
-   </table> 
-   <h2>Les Commentaires publiés</h2>
+<div class="container border">
+    <div class="btn-group">
+        <a href="../public/index.php?route=addPost" class="btn btn-primary active" aria-current="page">Ajouter un Article</a>
+        <a href="../public/index.php" class="btn btn-primary">Revenir sur la Page Principale</a>
+    </div>
 
-<h2>Les Commentaires en attente de validation</h2>
-<table>
-    <tr>
-        <td>Le titre</td>
-        <td>Le contennu</td>
-        <td>Date de création</td>
-        <td>L'auteur</td>
-        <td>Actions</td>
-    </tr>
-<?php
-foreach($comments as $comment)
-    {
-    ?>
-    <tr>
-    <!--<h4><?//= htmlspecialchars($comment->lastName . ' ' . $comment->firstName);?></h4>-->
-    <td><?= htmlspecialchars($comment->getTitleComment());?></td>
-    <td><?= substr(htmlspecialchars($comment->getContentComment()), 0, 100);?></td>
-    <td>Posté le <?= htmlspecialchars($comment->getCreated_at());?></td>
-    <td><?= htmlspecialchars($post->getEditor());?></td>
-    <td>
-    <a href="../public/index.php?route=isApprovedComment&comment_id=<?= $comment->getId(); ?>">Valider</a>
-    <a href="../public/index.php?route=deleteComment&comment_id=<?= $comment->getId(); ?>">Supprimer</a>  
-    </td>
-    </tr>  
-    <?php
-    }
-    // $comments->closeCursor();
-    ?>
-    </table>
-<h2>Les Utilisateurs</h2>
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Pseudo</td>
-        <td>Nom</td>
-        <td>Prénom</td>
-        <td>Email</td>
-        <td>Role</td>
-        <td>Actions</td>
-    </tr>
-    <?php
-    foreach ($user as $user)
-    {
-        ?>
-        <tr>
-            <td><?= htmlspecialchars($user->getId());?></td>
-            <td><?= htmlspecialchars($user->getUserName());?></td>
-            <td><?= htmlspecialchars($user->getFirstName());?></td>
-            <td><?= htmlspecialchars($user->getLastName());?></td>
-            <td><?= htmlspecialchars($user->getEmail());?></td>
-            <td><?= htmlspecialchars($user->getRole());?></td>
-            <td>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Entête</th>
+                    <th>Contenu</th>
+                    <th>Auteur</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
-                if($user->getRole() != 'admin') {
+                //while($post = $posts->fetch())
+                foreach ($articles as $article) {
                 ?>
-                <a href="../public/index.php?route=deleteMembre&user_id=<?= $user->getId(); ?>">Supprimer l'utilisateur</a>
-                <?php }
-                else {
-                    ?>
-                Suppresion impossible
+                    <tr>
+                        <td><?= htmlspecialchars($article->getId()); ?></td>
+                        <td><?= htmlspecialchars($article->getTitlePost()); ?></td>
+                        <td><?= /*limiter l'affichage à 50 caracteres*/ substr(htmlspecialchars($article->getHeaderPost()), 0, 50); ?></td>
+                        <td><?= substr(htmlspecialchars($article->getContentPost()), 0, 200); ?></td>
+                        <td>Par : <?= htmlspecialchars($article->getEditor()); ?></td>
+                        <td>Créé le : <?= htmlspecialchars($article->getUpdated_at()); ?></td>
+
+
+                        <td><a href="../public/index.php?route=article&post_id=<?= htmlspecialchars($article->getId()); ?>" class="btn btn-secondary">Lire la suite</a>
+                            <a href="../public/index.php?route=updatePost&post_id=<?= $article->getId(); ?>" class="btn btn-warning">Modifier</a>
+                            <a href="../public/index.php?route=deletePost&post_id=<?= $article->getId(); ?>" class="btn btn-danger">Supprimer</a>
+                        </td>
+
+                    </tr>
+            </tbody>
+            <br>
+        <?php
+                }
+                //$posts->closeCursor();
+        ?>
+        </table>
+    </div><br><br>
+    <div class="table-responsive">
+        <h2>Les Commentaires en attente de validation</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Le titre</th>
+                    <th>Le contenu</th>
+                    <th>Date de création</th>
+                    <th>L'auteur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($comments as $comment) {
+                ?>
+                    <tr>
+                        <!--<h4><? //= htmlspecialchars($comment->lastName . ' ' . $comment->firstName);
+                                ?></h4>-->
+                        <td><?= htmlspecialchars($comment->getTitleComment()); ?></td>
+                        <td><?= substr(htmlspecialchars($comment->getContentComment()), 0, 100); ?></td>
+                        <td>Posté le <?= htmlspecialchars($comment->getCreated_at()); ?></td>
+                        <td><?= htmlspecialchars($article->getEditor()); ?></td>
+                        <td>
+                            <a href="../public/index.php?route=isApprovedComment&comment_id=<?= $comment->getId(); ?>" class="btn btn-success">Valider</a>
+                            <a href="../public/index.php?route=deleteComment&comment_id=<?= $comment->getId(); ?>" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+            </tbody>
+        <?php
+                }
+                // $comments->closeCursor();
+        ?>
+        </table>
+    </div><br><br>
+    <div class="table-responsive">
+        <h2>Les Utilisateurs</h2>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Pseudo</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($user as $user) {
+                ?>
+                    <tr>
+                        <td><?= htmlspecialchars($user->getId()); ?></td>
+                        <td><?= htmlspecialchars($user->getUserName()); ?></td>
+                        <td><?= htmlspecialchars($user->getFirstName()); ?></td>
+                        <td><?= htmlspecialchars($user->getLastName()); ?></td>
+                        <td><?= htmlspecialchars($user->getEmail()); ?></td>
+                        <td><?= htmlspecialchars($user->getRole()); ?></td>
+                        <td>
+                            <?php
+                            if ($user->getRole() != 'admin') {
+                            ?>
+                                <a href="../public/index.php?route=deleteMembre&user_id=<?= $user->getId(); ?>" class="btn btn-danger">Supprimer l'utilisateur</a>
+                            <?php } else {
+                            ?>
+                                Suppresion impossible
+                            <?php
+                            }
+                            ?>
+                        </td>
+                    </tr>
                 <?php
                 }
                 ?>
-            </td>
-        </tr>
-        <?php
-    }
-    ?>
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>

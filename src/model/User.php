@@ -24,7 +24,7 @@ class User
      */
     private $lastName;
 
-     /**
+    /**
      * @var string
      */
     private $email;
@@ -39,7 +39,7 @@ class User
      */
     private $role;
 
- 
+
     /**
      * @return int
      */
@@ -70,7 +70,7 @@ class User
         $this->userName = $userName;
     }
 
-      /**
+    /**
      * @return string
      */
     public function getFirstName()
@@ -85,7 +85,7 @@ class User
         $this->firstName = $firstName;
     }
 
-      /**
+    /**
      * @return string
      */
     public function getLastName()
@@ -100,7 +100,7 @@ class User
         $this->lastName = $lastName;
     }
 
-      /**
+    /**
      * @return string
      */
     public function getEmail()
@@ -128,7 +128,7 @@ class User
     {
         $this->password = $password;
     }
-      /**
+    /**
      * @return string
      */
     public function getRole()

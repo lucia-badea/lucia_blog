@@ -14,7 +14,7 @@ class Comment
      */
     private $titleComment;
 
-       /**
+    /**
      * @var string
      */
     private $contentComment;
@@ -24,12 +24,12 @@ class Comment
      */
     private $created_at;
 
-        /**
+    /**
      * @var bool
      */
     private $published;
 
-       /**
+    /**
      * @return int
      */
     public function getId()
@@ -60,7 +60,7 @@ class Comment
         $this->titleComment = $titleComment;
     }
 
-  
+
     /**
      * @return string
      */

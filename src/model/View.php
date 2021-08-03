@@ -8,7 +8,7 @@ class View // Classe qui gére les vues
 {
     private $file;
     private $title;
-    private $session; 
+    private $session;
 
     public function __construct()
     {
@@ -18,7 +18,7 @@ class View // Classe qui gére les vues
 
     public function render($template, $data = [])
     {
-        $this->file = '../view/'.$template.'.php';
+        $this->file = '../view/' . $template . '.php';
         $content  = $this->renderFile($this->file, $data);
         $view = $this->renderFile('../view/base_view.php', [
             'title' => $this->title,
@@ -29,7 +29,7 @@ class View // Classe qui gére les vues
 
     private function renderFile($file, $data)
     {
-        if(file_exists($file)){
+        if (file_exists($file)) {
             extract($data);
             ob_start();
             require $file;

@@ -37,7 +37,7 @@ class CommentModel extends Db
         //return $this->manageRequest($sql, [$post_id]);
     }
 
-    public function addComment(Param $post, $post_id, $user_id)// l'ajout d'un commentaire
+    public function addComment(Param $post, $post_id, $user_id) // l'ajout d'un commentaire
     {
         //extract($post);
         //var_dump($post);
@@ -92,5 +92,4 @@ class CommentModel extends Db
         $resultat->closeCursor();
         return $comments;
     }
-
 }

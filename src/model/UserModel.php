@@ -16,7 +16,7 @@ class UserModel extends Db
         $user->setFirstName($row['firstName']);
         $user->setLastName($row['lastName']);
         $user->setEmail($row['email']);
-        $user->setRole($row['description']); 
+        $user->setRole($row['description']);
         return $user;
     }
 
@@ -25,7 +25,7 @@ class UserModel extends Db
         $sql = 'SELECT user.id, user.userName, user.firstName, user.lastName, user.email, role.description FROM user INNER JOIN role ON user.role_id = role.id ORDER BY user.id DESC';
         $resultat = $this->manageRequest($sql);
         $user = [];
-        foreach ($resultat as $row){
+        foreach ($resultat as $row) {
             $user_id = $row['id'];
             $user[$user_id] = $this->object($row);
         }
@@ -57,7 +57,7 @@ class UserModel extends Db
         $sql = 'SELECT userName FROM user WHERE userName = ?';
         $result = $this->manageRequest($sql, [$post->get('userName')]);
         $isOne = $result->fetchColumn();
-        if($isOne) {
+        if ($isOne) {
             return '<p>Ce Pseudo a été déjà utilisé ! Choissisez un autre !</p>';
         }
     }
@@ -78,6 +78,5 @@ class UserModel extends Db
     {
         $sql = 'DELETE FROM user WHERE userName = ?';
         $this->manageRequest($sql, [$userName]);
-    } 
-
+    }
 }

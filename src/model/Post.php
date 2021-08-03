@@ -98,7 +98,7 @@ class Post
         $this->contentPost = $contentPost;
     }
 
-        /**
+    /**
      * @return string
      */
     public function getEditor()
@@ -121,7 +121,7 @@ class Post
     {
         return $this->updated_at;
     }
-    
+
     /**
      * @param \DateTime $updated_at
      */

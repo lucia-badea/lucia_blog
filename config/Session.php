@@ -17,15 +17,14 @@ class Session //gére la session courante
     }
     public function get($key)
     {
-        if(isset($_SESSION[$key])) {
+        if (isset($_SESSION[$key])) {
             return $_SESSION[$key];
         }
         return null;
     }
     public function display($key)
     {
-        if(isset($_SESSION[$key]))
-        {
+        if (isset($_SESSION[$key])) {
             $name = $this->get($key);
             $this->remove($key);
             return $name;
@@ -34,7 +33,7 @@ class Session //gére la session courante
     }
     public function remove($key)
     {
-        unset($_SESSION[$key]);//efface l'espace occupé par les variables de session
+        unset($_SESSION[$key]); //efface l'espace occupé par les variables de session
     }
 
     public function build()

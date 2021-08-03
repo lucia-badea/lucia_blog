@@ -10,11 +10,10 @@ class Param
     {
         $this->param = $param;
     }
-    
+
     public function get($key)
     {
-        if(isset($this->param[$key]))
-        {
+        if (isset($this->param[$key])) {
             return $this->param[$key];
         }
         return null;

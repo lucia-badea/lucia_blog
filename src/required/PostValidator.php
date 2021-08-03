@@ -23,22 +23,21 @@ class PostValidator extends Validator
     }
     private function testField($key, $value) //on va vérifier chaque champ
     {
-        if($key === 'titlePost') {
+        if ($key === 'titlePost') {
             $error = $this->testTitlePost($key, $value);
             $this->addError($key, $error);
-        }
-        elseif($key === 'headerPost') {
+        } elseif ($key === 'headerPost') {
             $error = $this->testHeaderPost($key, $value);
             $this->addError($key, $error);
-        }
-        elseif ($key === 'contentPost') {
+        } elseif ($key === 'contentPost') {
             $error = $this->testContentPost($key, $value);
             $this->addError($key, $error);
         }
     }
     //on va ajouter une erreur si un des champ n'est pas valide
-    private function addError($key, $error) {
-        if($error) {
+    private function addError($key, $error)
+    {
+        if ($error) {
             $this->errors += [
                 $key => $error
             ];
@@ -47,36 +46,36 @@ class PostValidator extends Validator
     // on a créé 3 contraintes et les prochaines méthodes vont faire appel à eux
     private function testTitlePost($key, $value)
     {
-        if($this->required->notEmpty($key, $value)) {
+        if ($this->required->notEmpty($key, $value)) {
             return $this->required->notEmpty('titre', $value);
         }
-        if($this->required->testMinLength($key, $value, 2)) {
+        if ($this->required->testMinLength($key, $value, 2)) {
             return $this->required->testMinLength('titre', $value, 2);
         }
-        if($this->required->testMaxLength($key, $value, 255)) {
+        if ($this->required->testMaxLength($key, $value, 255)) {
             return $this->required->testMaxLength('titre', $value, 255);
         }
         return null;
     }
     private function testHeaderPost($key, $value)
     {
-        if($this->required->notEmpty($key, $value)) {
+        if ($this->required->notEmpty($key, $value)) {
             return $this->required->notEmpty('êntete', $value);
         }
-        if($this->required->testMinLength($key, $value, 2)) {
+        if ($this->required->testMinLength($key, $value, 2)) {
             return $this->required->testMinLength('êntete', $value, 2);
         }
-        if($this->required->testMaxLength($key, $value, 100)) {
+        if ($this->required->testMaxLength($key, $value, 100)) {
             return $this->required->testMaxLength('êntete', $value, 100);
         }
         return null;
     }
     private function testContentPost($key, $value)
     {
-        if($this->required->notEmpty($key, $value)) {
+        if ($this->required->notEmpty($key, $value)) {
             return $this->required->notEmpty('contenu', $value);
         }
-        if($this->required->testminLength($key, $value, 2)) {
+        if ($this->required->testminLength($key, $value, 2)) {
             return $this->required->testMinLength('contenu', $value, 2);
         }
         return null;
