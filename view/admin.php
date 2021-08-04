@@ -4,7 +4,7 @@ $this->title = 'Admin';
 <?= $this->session->display('add_Post'); ?>
 <?= $this->session->display('update_Post'); ?>
 <?= $this->session->display('delete_Post'); ?>
-<?= $this->session->display('delete_Member'); ?>
+<?= $this->session->display('delete_Membre'); ?>
 <?= $this->session->display('published_Comment'); ?>
 <?= $this->session->display('delete_Comment'); ?>
 
@@ -53,8 +53,7 @@ $this->title = 'Admin';
                         <td>Par : <?= htmlspecialchars($article->getEditor()); ?></td>
                         <td>Créé le : <?= htmlspecialchars($article->getUpdated_at()); ?></td>
 
-
-                        <td><a href="../public/index.php?route=article&post_id=<?= htmlspecialchars($article->getId()); ?>" class="btn btn-secondary">Lire la suite</a>
+                        <td><a href="../public/index.php?route=article&post_id=<?= $article->getId(); ?>" class="btn btn-secondary">Lire la suite</a>
                             <a href="../public/index.php?route=updatePost&post_id=<?= $article->getId(); ?>" class="btn btn-warning">Modifier</a>
                             <a href="../public/index.php?route=deletePost&post_id=<?= $article->getId(); ?>" class="btn btn-danger">Supprimer</a>
                         </td>

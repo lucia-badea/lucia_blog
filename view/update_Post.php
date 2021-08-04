@@ -21,15 +21,15 @@ $this->title = "Modifier l'article";
                 <div class="my-5">
                 </div>
                 <div>
-                    <form id="contactForm" method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($article->getId()); ?>">
+                    <form id="contactForm" method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($post->get('id'));?>">
                         <label for="titlePost">Titre</label><br>
-                        <input class="form-control" type="text" id="titlePost" name="titlePost" value="<?= htmlspecialchars($article->getTitlePost()); ?>"><br>
+                        <input class="form-control" type="text" id="titlePost" name="titlePost" value="<?= htmlspecialchars($post->get('titlePost')); ?>"><br>
                         <?= isset($errors['titlePost']) ? $errors['titlePost'] : ''; ?>
                         <label for="headerPost">L'êntete</label><br>
-                        <textarea class="form-control" id="headerPost" name="headerPost"> <?= htmlspecialchars($article->getHeaderPost()); ?></textarea><br>
+                        <textarea class="form-control" id="headerPost" name="headerPost"> <?= htmlspecialchars($post->get('headerPost')); ?></textarea><br>
                         <?= isset($errors['headerPost']) ? $errors['headerPost'] : ''; ?>
                         <label for="contentPost">Contenu</label><br>
-                        <textarea class="form-control" id="contentPost" name="contentPost" style="height: 12rem"><?= htmlspecialchars($article->getContentPost()); ?></textarea><br>
+                        <textarea class="form-control" id="contentPost" name="contentPost" style="height: 12rem"><?= htmlspecialchars($post->get('contentPost')); ?></textarea><br>
                         <?= isset($errors['contentPost']) ? $errors['contentPost'] : ''; ?>
                         <input class="btn btn-primary text-uppercase" type="submit" value="Modifier l'article" id="submitButton" name="submit"><br><br>
                     </form>

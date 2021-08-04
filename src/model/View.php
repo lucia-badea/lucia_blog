@@ -8,7 +8,6 @@ class View // Classe qui gére les vues
 {
     private $file;
     private $title;
-    private $session;
 
     public function __construct()
     {
@@ -31,10 +30,12 @@ class View // Classe qui gére les vues
     {
         if (file_exists($file)) {
             extract($data);
+            //var_dump($data);
             ob_start();
+            //$article = $post;
             require $file;
             return ob_get_clean();
         }
-        header('Location: index.php?route=notFound');
+        header('Location: index.php?route=notFoundError');
     }
 }

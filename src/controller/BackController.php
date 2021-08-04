@@ -57,7 +57,6 @@ class BackController extends Controller
             ]);
         }
     }
-
     public function deletePost($post_id) //méthode qui gére la suppresion d'un article
     {
         if ($this->testAdmin()) {

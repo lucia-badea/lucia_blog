@@ -21,7 +21,7 @@ class FrontController extends Controller
     public function article($post_id) //cette méthode affiche un seul article
     {
         $article = $this->postModel->showPost($post_id);
-        $comments = $this->commentModel->findCommentsByPost($_GET['post_id']);
+        $comments = $this->commentModel->findCommentsByPost($post_id);
         $user = $this->userModel->showUsers();
         //require '../view/single.php';
         return $this->view->render('single', [

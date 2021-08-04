@@ -29,7 +29,7 @@ foreach ($articles as $article) {
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-preview">
-                    <a href="../public/index.php?route=post&post_id=<?= htmlspecialchars($article->getId()); ?>">
+                    <a href="../public/index.php?route=article&post_id=<?= htmlspecialchars($article->getId()); ?>">
                         <h2 class="post-title"><?= htmlspecialchars($article->getTitlePost()); ?></h2>
                     </a>
                     <h3 class="post-subtitle"><?= htmlspecialchars($article->getHeaderPost()); ?></h3>
