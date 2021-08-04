@@ -21,7 +21,7 @@ $this->title = "Modifier l'article";
                 <div class="my-5">
                 </div>
                 <div>
-                    <form id="contactForm" method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($post->get('id')); ?>">
+                    <form id="contactForm" method="post" action="../public/index.php?route=updatePost&post_id=<?= htmlspecialchars($post->get('id'));?>">
                         <label for="titlePost">Titre</label><br>
                         <input class="form-control" type="text" id="titlePost" name="titlePost" value="<?= htmlspecialchars($post->get('titlePost')); ?>"><br>
                         <?= isset($errors['titlePost']) ? $errors['titlePost'] : ''; ?>

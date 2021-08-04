@@ -21,6 +21,7 @@
                 <p>Rejoignez-nous ! Pour vous inscrire remplisez le formulaire !</p>
                 <div class="my-5">
                 </div>
+
                 <form id="contactForm" method="post" action="../public/index.php?route=register" data-sb-form-api-token="API_TOKEN">
                     <div class="form-floating">
                         <input class="form-control" type="text" placeholder="Entrez vôtre Pseudonime..." id="userName" name="userName" value="<?= isset($post) ? htmlspecialchars($post->get('userName')) : ''; ?>">
@@ -53,4 +54,5 @@
         </div>
         <a href="../public/index.php" class="btn btn-default">Revenir sur la Page Principale</a>
     </div>
+
 </main>

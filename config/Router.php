@@ -33,9 +33,9 @@ class Router
                     $this->backController->addPost($this->httpRequest->getPost());
                 } elseif ($route === 'updatePost') {
                     $this->backController->updatePost($this->httpRequest->getPost(), $this->httpRequest->getGet()->get('post_id'));
-                } elseif ($_GET['route'] === 'deletePost') {
+                } elseif ($route === 'deletePost') {
                     $this->backController->deletePost($this->httpRequest->getGet()->get('post_id'));
-                } elseif ($_GET['route'] === 'addComment') {
+                } elseif ($route === 'addComment') {
                     $this->frontController->addComment($this->httpRequest->getPost(), $this->httpRequest->getGet()->get('post_id'));
                 } elseif ($route === 'register') {
                     $this->frontController->register($this->httpRequest->getPost());
@@ -71,7 +71,7 @@ class Router
         catch (Exception $e) {
             $this->errorController->serverError();
 
-            echo $e->getMessage();
+            //echo $e->getMessage();
         }
     }
 }
