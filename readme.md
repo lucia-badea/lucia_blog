@@ -1,5 +1,7 @@
 Projet 5 OpenClassrooms du Parcours PHP/Symfony - "Créez votre premier blog en PHP"
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/57eb7023d513452a8697703a5822dc3a)](https://www.codacy.com/gh/lucia-badea/lucia_blog/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lucia-badea/lucia_blog&amp;utm_campaign=Badge_Grade)
+
 Les functionnalités principales disponibles :
 
 Le visiteur:
@@ -38,5 +40,3 @@ Ressources:
 2. https://www.udemy.com/course/php-formation-complete-pour-debutants/
 3. https://codededev.com/cours
 4. https://www.udemy.com/course/formation-complete-du-modele-mvc-en-php-procedural/
-
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/57eb7023d513452a8697703a5822dc3a)](https://www.codacy.com/gh/lucia-badea/lucia_blog/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lucia-badea/lucia_blog&amp;utm_campaign=Badge_Grade)
