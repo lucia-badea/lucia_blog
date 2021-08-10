@@ -1,7 +1,5 @@
 <?php $this->title = 'Mon compte'; ?>
 
-<?= $this->session->display('edit_Password'); ?>
-
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/login.jpg')">
     <div class="container position-relative px-4 px-lg-5">
@@ -22,6 +20,9 @@
                 <div class="my-5">
                 </div>
                 <div>
+                    <div id="session">
+                        <?= $this->session->display('edit_Password'); ?>
+                    </div>
                     <h2><?= $this->session->get('userName'); ?></h2><br><br>
                     <a href="../public/index.php?route=editPassword" class="btn btn-warning">Modifier le mot de passe</a>
                     <a href="../public/index.php?route=deleteCompte" class="btn btn-danger">Supprimer le compte</a>

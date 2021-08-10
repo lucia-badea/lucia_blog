@@ -15,6 +15,7 @@ class CommentModel extends Db
         $comment->setContentComment($row['contentComment']);
         $comment->setCreated_at($row['created_at']);
         $comment->setIsApprovedComment($row['published']);
+        $comment->setAuthorComment($row['userName']);
         return $comment;
     }
     public function findCommentsByPost($post_id)

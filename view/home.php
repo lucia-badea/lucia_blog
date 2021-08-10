@@ -1,11 +1,6 @@
 <?php
 $this->title = "Home";
 ?>
-<?= $this->session->display('register'); ?>
-<?= $this->session->display('login'); ?>
-<?= $this->session->display('logout'); ?>
-<?= $this->session->display('delete_Compte'); ?>
-
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
     <div class="container position-relative px-4 px-lg-5">
@@ -26,6 +21,14 @@ foreach ($articles as $article) {
 ?>
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
+        <div id="session">
+            <?= $this->session->display('register'); ?>
+            <?= $this->session->display('login'); ?>
+            <?= $this->session->display('logout'); ?>
+            <?= $this->session->display('delete_Compte'); ?>
+            <?= $this->session->display('must_be_loggedIn'); ?>
+            <?= $this->session->display('addComment'); ?>
+        </div>
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="post-preview">

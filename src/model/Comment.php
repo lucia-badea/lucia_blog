@@ -20,6 +20,11 @@ class Comment
     private $contentComment;
 
     /**
+     * @var string
+     */
+    private $authorComment;
+
+    /**
      * @var \DateTime
      */
     private $created_at;
@@ -75,6 +80,22 @@ class Comment
     public function setContentComment($contentComment)
     {
         $this->contentComment = $contentComment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorComment()
+    {
+        return $this->authorComment;
+    }
+
+    /**
+     * @param string $authorComment
+     */
+    public function setAuthorComment($authorComment)
+    {
+        $this->authorComment = $authorComment;
     }
 
     /**

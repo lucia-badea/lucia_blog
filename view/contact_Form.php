@@ -1,6 +1,4 @@
 <?php $this->title = "Contacter"; ?>
-
-<?= $this->session->display('contact_Form'); ?>
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
     <div class="container position-relative px-4 px-lg-5">
@@ -19,6 +17,9 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
+                <div id="session">
+                    <?= $this->session->display('contact_Form'); ?>
+                </div>
                 <p>Avez-vous besoin de plus d'informations? Remplissez le formulaire et je vais vous repondre les plus vite possible!</p>
                 <div class="my-5">
                 </div>

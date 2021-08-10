@@ -52,8 +52,6 @@ class Mailer
             $mail->AltBody = strip_tags($content);
 
             $mail->send();
-
-            //header('Location: ../public/index.php?route=contactForm');
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }

@@ -27,3 +27,11 @@ header.masthead .site-heading .h1 .update {
     font-size: 1.5rem;
     color: #0085a1;  
 }
+
+#session {
+    color: #198754;
+    text-align: center;
+    padding: 22px;
+    font-size: 3rem;
+    /*background-color: rgba(255,255,255,0.5);*/
+}

@@ -17,9 +17,7 @@ class PostModel extends Db
         $article->setHeaderPost($row['headerPost']);
         $article->setContentPost($row['contentPost']);
         $article->setUpdated_at($row['updated_at']);
-        //$article->setEditor($row['lastName'], $row['firstName']);
-        $article->setEditor($row['firstName']);
-
+        $article->setEditor($row['firstName'] . " " . $row['lastName']);
         return $article;
     }
     public function getPosts() //affiche tous les articles

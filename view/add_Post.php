@@ -1,7 +1,6 @@
 <?php
 $this->title = "Ajouter un article";
 ?>
-
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/article.jpg')">
     <div class="container position-relative px-4 px-lg-5">

@@ -3,7 +3,7 @@
 namespace App\src\controller;
 
 use App\config\Param;
-use App\src\services\Mailer;
+use App\controller\BackController;
 
 class FrontController extends Controller
 {
@@ -30,16 +30,26 @@ class FrontController extends Controller
             'user' => $user
         ]);
     }
+    private function testIfIsLoggedIn() // tester si l'utilisateur est connecté
+    {
+        if (!$this->session->get('userName')) {
+            $this->session->set('must_be_loggedIn', 'Vous devez être connecté pour ajouter un commentaire !');
+            header('Location: ../public/index.php');
+        } else {
+            return true;
+        }
+    }
 
     public function addComment(Param $post, $post_id) //méthode qui gére l'ajout d'un article
     {
+        $this->testIfIsLoggedIn();
         if ($post->get('submit')) {
             // $user_id = 1; //on a créé une valeur par defaut et il faudra recuperer la vrai valeur quand le system connexion sera fait
             $errors = $this->validator->validateData($post, 'Comment');
             if (!$errors) {
                 $this->commentModel->addComment($post, $post_id, $this->session->get('id'));
-                $this->session->set('add_Comment', 'Votre commentaire a été soumis pour la validation !');
-                header('Location: ../public/index.php?route=article&post_id=' . $post_id);
+                $this->session->set('addComment', 'Votre commentaire a été soumis pour la validation !');
+                header('Location: ../public/index.php');
             }
             $article = $this->postModel->showPost($post_id);
             $comments = $this->commentModel->findCommentsByPost($post_id);
@@ -97,6 +107,7 @@ class FrontController extends Controller
                 $this->mailer->send($post);
                 $this->session->set('contact_Form', 'Votre email a été envoyé avec succés ! Vous recevrez un reponse dans maximum 2 jours !');
                 header('Location: ../public/index.php?route=contactForm');
+                exit();
             }
             return $this->view->render('contact_Form', [
                 'post' => $post,

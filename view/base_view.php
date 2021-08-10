@@ -76,10 +76,10 @@
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="../public/index.php">
+                            <a href="https://www.linkedin.com/in/lucia-badea-33384a17b/" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
                                 </span>
                             </a>
                         </li>
@@ -91,6 +91,16 @@
                                 </span>
                             </a>
                         </li>
+                        <?php if ($this->session->get('role') === 'admin') { ?>
+                            <li class="list-inline-item">
+                                <a href="../public/index.php?route=admin">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fas fa-user-shield fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        <?php } ?>
                     </ul>
                     <div class="small text-center text-muted fst-italic">Copyright &copy; Lucia Badea 2021</div>
                 </div>
