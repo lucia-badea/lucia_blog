@@ -10,22 +10,23 @@
     font-size: 0.875em;
     color: #dc3545;
 }
+
 .font-weight-bold {
     font-weight: bold;
 }
+
 .font-weight-light {
     font-style: italic;
     font-weight: 600;
 }
-header.masthead .page-heading h1, header.masthead .page-heading .h1,
-header.masthead .site-heading h1,
-header.masthead .site-heading .h1 .update {
+
+header.masthead .page-heading h1, header.masthead .page-heading .h1, header.masthead .site-heading h1, header.masthead .site-heading .h1 .update {
     font-size: 4rem;
 }
 
 .custom-comment {
     font-size: 1.5rem;
-    color: #0085a1;  
+    color: #0085a1;
 }
 
 #session {
