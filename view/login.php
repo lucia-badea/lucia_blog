@@ -1,7 +1,6 @@
 <?php
 $this->title = "Connexion";
 ?>
-<?= $this->session->display('error_conection'); ?>
 
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('assets/img/login.jpg')">
@@ -20,11 +19,13 @@ $this->title = "Connexion";
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div id="session">
+                <?= $this->session->display('error_conection'); ?>
+            </div>
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <p>Pour vous connecter remplisez le formulaire qui suit !</p>
                 <div class="my-5">
                 </div>
-
                 <form id="contactForm" method="post" action="../public/index.php?route=login" data-sb-form-api-token="API_TOKEN">
                     <div class="form-floating">
                         <input class="form-control" type="text" placeholder="Entrez vôtre Pseudonime..." id="userName" name="userName" value="<?= isset($post) ? htmlspecialchars($post->get('userName')) : ''; ?>">
