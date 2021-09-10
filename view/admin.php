@@ -27,6 +27,7 @@ $this->title = 'Admin';
     <?= $this->session->display('delete_Membre'); ?>
     <?= $this->session->display('published_Comment'); ?>
     <?= $this->session->display('delete_Comment'); ?>
+    <?= $this->session->display('is_not_membre'); ?>
 </div>
 <div class="table-responsive">
     <table class="table table-striped">
