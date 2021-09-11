@@ -135,7 +135,6 @@ class BackController extends Controller
         if (!$this->session->get('userName')) {
             $this->session->set('must_be_login', 'Vous devez être connecté pour accéder à cette page !');
             header('Location: ../public/index.php?route=login');
-            exit;
         } else {
             return true;
         }
@@ -147,7 +146,6 @@ class BackController extends Controller
         if (!($this->session->get('role') === 'admin')) {
             $this->session->set('is_not_admin', 'Vous n\'etez pas un Administrateur! Vous ne pouvez pas accéder à cette page !');
             header('Location: ../public/index.php?route=compte');
-            exit;
         } else {
             return true;
         }
